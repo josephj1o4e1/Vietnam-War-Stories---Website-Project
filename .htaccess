@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} !^vietnamwarstories.indiana.edu [NC]
+RewriteRule ^(.*)$ https://vietnamwarstories.indiana.edu/$1 [R=301,L]

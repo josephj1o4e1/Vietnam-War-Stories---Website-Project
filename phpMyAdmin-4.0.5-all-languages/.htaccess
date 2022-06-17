@@ -1,7 +1,0 @@
-AuthGroupFile /dev/null
-AuthType CAS
-AuthName "IU Network ID"
-
-<Limit GET POST>
-require user vietwar 
-</Limit>

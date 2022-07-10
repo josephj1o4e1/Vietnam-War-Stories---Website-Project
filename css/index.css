@@ -21,6 +21,15 @@ body {
     overflow-y: scroll;
 }
 
+#glossarypage-container {
+    height: 100%;
+    position: relative;
+    background-color: #eee;
+    background-image: url(../images/new_paper.jpg);
+    background-size: cover;
+    overflow-y: scroll;
+}
+
 #glossary {
     /*margin-top: 1.75em;*/
     margin-top: 8em;
@@ -431,9 +440,10 @@ body {
 }
 
 #alphabetical-listing {
-    letter-spacing: .30EM;
+    letter-spacing: .50EM;
     font-weight: bold;
-    margin: .5EM 0 2EM 2EM;
+    margin: 2EM 0 1EM 1EM;
+    text-align: center;
 }
 
 #glossary-terms {

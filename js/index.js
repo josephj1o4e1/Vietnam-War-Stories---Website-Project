@@ -655,7 +655,6 @@ function findContributorVideos (new_contributor, current_topic){
 }
 
 function init() {
-    console.log("Finished @@");
     // Region Data
     Papa.parse(region_data_url, {
             download: true,
@@ -776,7 +775,7 @@ function init() {
         }
 
         document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
-        }
+    }
 }
 
 

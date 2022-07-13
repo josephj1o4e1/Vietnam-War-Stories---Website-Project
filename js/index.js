@@ -3,7 +3,7 @@ var map_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3Y
 var region_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=473857050&single=true&output=csv";
 var contributor_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=738174222&single=true&output=csv";
 var glossary_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=739147405&single=true&output=csv";
-
+var fileInput = new File([""], ["C:\\Users\\joe_c\\OneDrive - Indiana University\\Documents\\ABROAD_INDIANA\\FADS_Independent_Studies\\Code\\data\\Vietnam War Stories Database  - Glossary.csv"]);
 
 // Dev spreadsheet
 // var public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1Aqez9uNTS2wBdOdsOgxZwQBppINTMS46U2eVyIEObeQ/edit?usp=sharing";
@@ -200,18 +200,21 @@ var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
 
 function glossaryTerms(firstChar){
     lastClickedTermList = firstChar;
-    $("#glossary-entries").empty();
-  var find_glossary_terms = Object.values(keywords);
-  for (var i = 0; i < find_glossary_terms.length; i++){
-    var new_glossary_entry = find_glossary_terms[i];
-    var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
-    var target_terms = new_glossary_entry.name;
-    if(target_terms.charAt(0).toUpperCase() == firstChar){
-    $("#glossary-entries").append(glossary_list);
-    } 
-  }
-  getFirstDef();
- }
+    $("#glossary-entries"+firstChar).empty();
+    var find_glossary_terms = Object.values(keywords);
+    for (var i = 0; i < find_glossary_terms.length; i++){
+        var new_glossary_entry = find_glossary_terms[i];
+        var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
+        var target_terms = new_glossary_entry.name;
+        if(target_terms.charAt(0).toUpperCase() == firstChar){
+        $("#glossary-entries"+firstChar).append(glossary_list);
+        } 
+    }
+    getFirstDef();
+}
+
+
+
 
 //Get the most recently clicked glossary term
 var lastClickedDef = 0; 
@@ -272,7 +275,10 @@ function toggleAlphabeticalList() {
 
 //Remove glossary content
 function clearGlossary(){
-    $("#glossary-entries").empty();
+    var find_glossary_terms = Object.values(keywords);
+    for (var i = 0; i < find_glossary_terms.length; i++){
+        $("#glossary-entries"+alphabet[i]).empty();
+    }
     $("#glossary-defs-list").empty();
     $("#glossary-defs").empty();
     $("#glossary-links").empty();
@@ -652,91 +658,125 @@ function init() {
 
     // Region Data
     Papa.parse(region_data_url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data
-            for (let i = 0; i < data.length; i++) {
-                current = data[i];
-                if (regions[current.region_name] == null) {
-                    regions[current.region_name] = new Region (regionTotal, current.region_name, current.region_desc, current.region_total, current.region_img_link);
-                    regionTotal ++;
+            download: true,
+            header: true,
+            complete: function(results) {
+                var data = results.data
+                for (let i = 0; i < data.length; i++) {
+                    current = data[i];
+                    if (regions[current.region_name] == null) {
+                        regions[current.region_name] = new Region (regionTotal, current.region_name, current.region_desc, current.region_total, current.region_img_link);
+                        regionTotal ++;
+                    }
                 }
-            }
                 // Contributor Data
-    Papa.parse(contributor_data_url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data
-            for (let i = 0; i < data.length; i++) {
-                current = data[i];
-                if (contributors[current.contributor_name] == null) {
-                    contributors[current.contributor_name] = new Contributor (contributorsTotal, current.contributor_name, current.primary_affiliation, current.secondary_affiliation, current.total_contributions);
-                    contributorsTotal ++;
-                    
-                    if (current.transcript_link != '') { contributors[current.contributor_name].transcript_link = current.transcript_link; 
-                        // console.log (contributors[current.contributor_name]);
-                    }
-                }
-            }
-
-            // Map Data
-            Papa.parse(map_data_url, {
-                download: true,
-                header: true,
-                complete: function(results) {
-                    var data = results.data
-                    for (let i = 0; i < data.length; i++) {
-                        current = data[i];
-                        if (current.topic != '' && current.contributor != '' && current.youtube_link != '') {
-                            var new_topic = new Topic (topicTotal, current.topic, current.contributor, current.contributor_affiliation, current.contributor_subaffiliation,
-                                                        current.youtube_link, current.mco_link, current.topic_abstract, current.time_period, current.region, [current.keyword_1, current.keyword_2, current.keyword_3, current.keyword_4, current.keyword_5]);
-                            // if (current.region != '') { regions[current.region].entries.push(new_contribution); }
-                            if (current_page !='glossary.html'){
-                            addToSidebar(new_topic);
-                            refreshSavePlaylist();
+                Papa.parse(contributor_data_url, {
+                    download: true,
+                    header: true,
+                    complete: function(results) {
+                        var data = results.data
+                        for (let i = 0; i < data.length; i++) {
+                            current = data[i];
+                            if (contributors[current.contributor_name] == null) {
+                                contributors[current.contributor_name] = new Contributor (contributorsTotal, current.contributor_name, current.primary_affiliation, current.secondary_affiliation, current.total_contributions);
+                                contributorsTotal ++;
+                                
+                                if (current.transcript_link != '') { contributors[current.contributor_name].transcript_link = current.transcript_link; 
+                                    // console.log (contributors[current.contributor_name]);
+                                }
                             }
-                            topics.push(new_topic);
-                            topicTotal ++;
                         }
-                    }
-                    topics_loaded = true;
-                }    
-            } )
+
+                        // Map Data
+                        Papa.parse(map_data_url, {
+                            download: true,
+                            header: true,
+                            complete: function(results) {
+                                var data = results.data
+                                for (let i = 0; i < data.length; i++) {
+                                    current = data[i];
+                                    if (current.topic != '' && current.contributor != '' && current.youtube_link != '') {
+                                        var new_topic = new Topic (topicTotal, current.topic, current.contributor, current.contributor_affiliation, current.contributor_subaffiliation,
+                                                                    current.youtube_link, current.mco_link, current.topic_abstract, current.time_period, current.region, [current.keyword_1, current.keyword_2, current.keyword_3, current.keyword_4, current.keyword_5]);
+                                        // if (current.region != '') { regions[current.region].entries.push(new_contribution); }
+                                        if (current_page !='glossary.html'){
+                                        addToSidebar(new_topic);
+                                        refreshSavePlaylist();
+                                        }
+                                        topics.push(new_topic);
+                                        topicTotal ++;
+                                    }
+                                }
+                                topics_loaded = true;
+                            }    
+                        } )
+                    }    
+                } )
+
+                // Glossary Data
+                Papa.parse(glossary_data_url, {
+                    download: true,
+                    header: true,
+                    complete: function(results) {
+                        var data = results.data
+                        for (let i = 0; i < data.length; i++) {
+                            current = data[i];
+                            if (keywords[current.keyword_name] == null) {
+                                keywords[current.keyword_name] = new Keyword (keywordsTotal, current.keyword_name, current.keyword_desc, current.keyword_count);
+                                keywordsTotal ++;
+                            } 
+                        }
+                    }    
+                } )
+
+
         }    
     } )
 
-    // Glossary Data
-    Papa.parse(glossary_data_url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data
-            for (let i = 0; i < data.length; i++) {
-                current = data[i];
-                if (keywords[current.keyword_name] == null) {
-                    keywords[current.keyword_name] = new Keyword (keywordsTotal, current.keyword_name, current.keyword_desc, current.keyword_count);
-                    keywordsTotal ++;
-                } 
-            }
-        }    
-    } )
+    // // Parse the glossary data locally 
+    // var fileInput = document.getElementById('myCSV');
+    // console.log("fileInput!!:");
+    // console.log(fileInput.files[0]);
+    // console.log('!!!');
+    // Papa.parse(fileInput.files[0], {
+    //     // download: true,
+    //     header: true,
+    //     complete: function(results) {
+    //         var data = results.data
+    //         document.getElementById('out').innerHTML = data[0].keyword_name + '_' + data[10].keyword_name + '_' + data[50].keyword_name;
+    //         for (let i = 0; i < data.length; i++) {
+    //             current = data[i];
+    //             console.log('@@')
+    //             if (keywords[current.keyword_name] == null) {
+    //                 keywords[current.keyword_name] = new Keyword (keywordsTotal, current.keyword_name, current.keyword_desc, current.keyword_count);
+    //                 keywordsTotal ++;
+    //             } 
+    //         }
+    //         console.log("Finished:");
+    //     }    
+    // } )
 
+    var html_dropdown_main = "";
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    for (var i = 0, l = alphabet.length; l > i; i++) {
+        html_dropdown_main += "<div class=\"dropdown\">";
+        html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
+        html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
+        html_dropdown_main += "<ul>";
+        html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
+        html_dropdown_main += "</ul>";
+        html_dropdown_main += "</div>";
+        html_dropdown_main += "</div>";
+    }
 
-
-
-
-        }    
-    } )
-
-
+    document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
 
 
 
     if (current_page == "glossary.html"){
         glossaryTerms("A");
     }
+
 }
 
 window.addEventListener('DOMContentLoaded', init)

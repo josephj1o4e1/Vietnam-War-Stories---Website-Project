@@ -719,7 +719,6 @@ function init() {
                     header: true,
                     complete: function(results) {
                         var data = results.data
-                        document.getElementById('out').innerHTML = data[0].keyword_name + '_' + data[10].keyword_name + '_' + data[50].keyword_name;
                         for (let i = 0; i < data.length; i++) {
                             current = data[i];
                             if (keywords[current.keyword_name] == null) {
@@ -759,9 +758,6 @@ function init() {
     //         console.log("Finished:");
     //     }    
     // } )
-    
-    
-
 
 
     if (current_page == "glossary.html"){
@@ -783,24 +779,6 @@ function init() {
         }
 }
 
-// function dropdown_main_func() {
-//     var html_dropdown_main = "";
-//     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-//     for (var i = 0, l = alphabet.length; l > i; i++) {
-//         html_dropdown_main += "<div class=\"dropdown\">";
-//         html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
-//         html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
-//         html_dropdown_main += "<ul>";
-//         html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
-//         html_dropdown_main += "</ul>";
-//         html_dropdown_main += "</div>";
-//         html_dropdown_main += "</div>";
-//     }
-
-//     document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
-// }
-
 
 
 window.addEventListener('DOMContentLoaded', init)
-// window.addEventListener('load', dropdown_main_func)

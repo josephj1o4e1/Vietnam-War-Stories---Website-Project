@@ -731,6 +731,9 @@ function init() {
                 } )
 
 
+
+
+                
         }    
     } )
 
@@ -757,6 +760,16 @@ function init() {
     //     }    
     // } )
     
+    
+
+
+
+    // if (current_page == "glossary.html"){
+    //     glossaryTerms("A");
+    // }
+}
+
+function dropdown_main_func() {
     var html_dropdown_main = "";
     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     for (var i = 0, l = alphabet.length; l > i; i++) {
@@ -771,13 +784,9 @@ function init() {
     }
 
     document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
-
-
-
-    // if (current_page == "glossary.html"){
-    //     glossaryTerms("A");
-    // }
-
 }
 
+
+
 window.addEventListener('DOMContentLoaded', init)
+window.addEventListener('load', dropdown_main_func)

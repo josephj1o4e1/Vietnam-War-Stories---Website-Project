@@ -3,7 +3,7 @@ var map_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3Y
 var region_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=473857050&single=true&output=csv";
 var contributor_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=738174222&single=true&output=csv";
 var glossary_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=739147405&single=true&output=csv";
-var fileInput = new File([""], ["C:\\Users\\joe_c\\OneDrive - Indiana University\\Documents\\ABROAD_INDIANA\\FADS_Independent_Studies\\Code\\data\\Vietnam War Stories Database  - Glossary.csv"]);
+// var fileInput = new File([""], ["C:\\Users\\joe_c\\OneDrive - Indiana University\\Documents\\ABROAD_INDIANA\\FADS_Independent_Studies\\Code\\data\\Vietnam War Stories Database  - Glossary.csv"]);
 
 // Dev spreadsheet
 // var public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1Aqez9uNTS2wBdOdsOgxZwQBppINTMS46U2eVyIEObeQ/edit?usp=sharing";
@@ -719,6 +719,7 @@ function init() {
                     header: true,
                     complete: function(results) {
                         var data = results.data
+                        document.getElementById('out').innerHTML = data[0].keyword_name + '_' + data[10].keyword_name + '_' + data[50].keyword_name;
                         for (let i = 0; i < data.length; i++) {
                             current = data[i];
                             if (keywords[current.keyword_name] == null) {
@@ -773,9 +774,9 @@ function init() {
 
 
 
-    if (current_page == "glossary.html"){
-        glossaryTerms("A");
-    }
+    // if (current_page == "glossary.html"){
+    //     glossaryTerms("A");
+    // }
 
 }
 

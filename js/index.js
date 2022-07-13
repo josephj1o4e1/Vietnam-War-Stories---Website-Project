@@ -764,29 +764,43 @@ function init() {
 
 
 
-    // if (current_page == "glossary.html"){
-    //     glossaryTerms("A");
-    // }
+    if (current_page == "glossary.html"){
+        // glossaryTerms("A");
+        var html_dropdown_main = "";
+        var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        for (var i = 0, l = alphabet.length; l > i; i++) {
+            html_dropdown_main += "<div class=\"dropdown\">";
+            html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
+            html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
+            html_dropdown_main += "<ul>";
+            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
+            html_dropdown_main += "</ul>";
+            html_dropdown_main += "</div>";
+            html_dropdown_main += "</div>";
+        }
+
+        document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
+        }
 }
 
-function dropdown_main_func() {
-    var html_dropdown_main = "";
-    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    for (var i = 0, l = alphabet.length; l > i; i++) {
-        html_dropdown_main += "<div class=\"dropdown\">";
-        html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
-        html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
-        html_dropdown_main += "<ul>";
-        html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
-        html_dropdown_main += "</ul>";
-        html_dropdown_main += "</div>";
-        html_dropdown_main += "</div>";
-    }
+// function dropdown_main_func() {
+//     var html_dropdown_main = "";
+//     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+//     for (var i = 0, l = alphabet.length; l > i; i++) {
+//         html_dropdown_main += "<div class=\"dropdown\">";
+//         html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
+//         html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
+//         html_dropdown_main += "<ul>";
+//         html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
+//         html_dropdown_main += "</ul>";
+//         html_dropdown_main += "</div>";
+//         html_dropdown_main += "</div>";
+//     }
 
-    document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
-}
+//     document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
+// }
 
 
 
 window.addEventListener('DOMContentLoaded', init)
-window.addEventListener('load', dropdown_main_func)
+// window.addEventListener('load', dropdown_main_func)

@@ -207,7 +207,7 @@ function glossaryTerms(firstChar){
         var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
         var target_terms = new_glossary_entry.name;
         if(target_terms.charAt(0).toUpperCase() == firstChar){
-        $("#glossary-entries"+firstChar).append(glossary_list);
+            $("#glossary-entries"+firstChar).append(glossary_list);
         } 
     }
     getFirstDef();

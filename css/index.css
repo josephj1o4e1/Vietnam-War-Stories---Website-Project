@@ -34,6 +34,7 @@ body {
     /*margin-top: 1.75em;*/
     margin-top: 8em;
     margin-left: 4em;
+    padding: 15px 10px 5px 10px;
 }
 
 #glossary-defs-list h4 {

@@ -218,7 +218,7 @@ function glossaryTerms(firstChar){
 
 //Get the most recently clicked glossary term
 var lastClickedDef = 0; 
-var lastClickedTermList = "A";
+// var lastClickedTermList = "A";
 function getFirstDef(){
     if ($('#glossary-defs-list').is(':empty') && current_page =="glossary.html"){
         if(topics_loaded == true){

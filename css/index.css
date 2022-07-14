@@ -462,7 +462,7 @@ body {
     overflow: auto;
     letter-spacing: .50EM;
     text-align: left;
-    font-size: 0.875em;
+    /* font-size: 0.875em; */
 }
 
 .dropdown-content a {

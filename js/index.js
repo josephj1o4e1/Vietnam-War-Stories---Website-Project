@@ -226,7 +226,7 @@ function getFirstDef(){
             glossaryTerms(lastClickedTermList);
         }
         else{
-        setTimeout(getFirstDef, 250);
+            setTimeout(getFirstDef, 250);
         }
     }
 }
@@ -240,19 +240,19 @@ function getGlossaryDef(glossary_id){
     var glossary_list = Object.values(keywords);
     var glossary_entry = glossary_list[glossary_id].name
     var glossary_def = glossary_list[glossary_id].desc;     
-        for (var i = 0; i< topics.length; i++){
-            var new_topic_id = topics[i].id;
-            for (var j = 0; j < topics[new_topic_id].keywords.length; j++){
-                var new_topic_keywords = topics[new_topic_id].keywords[j];
-                if(new_topic_keywords == glossary_entry){
-                    //console.log(new_topic_keywords + " found in topic " + new_topic_id);
-                    var found_topic = new_topic_id;
-                    addToRelatedVideos(topics[found_topic]);
-                    related_topic_found = true;
-                    refreshSavePlaylist();
-                }   
-            }
+    for (var i = 0; i< topics.length; i++){
+        var new_topic_id = topics[i].id;
+        for (var j = 0; j < topics[new_topic_id].keywords.length; j++){
+            var new_topic_keywords = topics[new_topic_id].keywords[j];
+            if(new_topic_keywords == glossary_entry){
+                //console.log(new_topic_keywords + " found in topic " + new_topic_id);
+                var found_topic = new_topic_id;
+                addToRelatedVideos(topics[found_topic]);
+                related_topic_found = true;
+                refreshSavePlaylist();
+            }   
         }
+    }
     $("#glossary-defs-list").empty().append("<h4>" + glossary_entry + "</h4>");
     $("#glossary-defs").empty().append(glossary_def); 
     

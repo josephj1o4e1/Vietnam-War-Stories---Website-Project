@@ -216,7 +216,8 @@ function glossaryTerms(firstChar){
 
 
 
-//Get the most recently clicked glossary term
+//Get the most recently clicked glossary term....(old comment)
+//but the new design doesn't need default glossary display anymore, so I commented out
 // var lastClickedDef = 0; 
 // var lastClickedTermList = "A";
 function getFirstDef(){

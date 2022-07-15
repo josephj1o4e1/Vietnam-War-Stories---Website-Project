@@ -34,7 +34,7 @@ body {
     /*margin-top: 1.75em;*/
     /* margin-top: 8em;
     margin-left: 4em; */
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #glossary-defs-list h4 {
@@ -160,9 +160,6 @@ body {
 #search-container {
     padding: 15px 10px 5px 10px;
     border-bottom: 1.5px solid #77777A;
-    position: sticky;
-    top: auto;
-    z-index: 100;
 }
 #search-bar, #search-filter-group .btn, #playlist-button, .sidebar-panel {
     border-radius: 0;

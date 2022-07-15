@@ -160,7 +160,9 @@ body {
 #search-container {
     padding: 15px 10px 5px 10px;
     border-bottom: 1.5px solid #77777A;
-
+    position: sticky;
+    top: auto;
+    z-index: 100;
 }
 #search-bar, #search-filter-group .btn, #playlist-button, .sidebar-panel {
     border-radius: 0;

@@ -1,17 +1,28 @@
 // Add sortable list
 
-Sortable.create(simpleList, {
-    onRemove: function (evt) {
-        // console.log('Playlist items(s) removed');
-    },
-    onUpdate: function (evt) {
-        // console.log('Playlist re-sorted');
-        var newTopId = document.getElementById("simpleList").childNodes;
-        var topic_id = newTopId[0].id;
-        openTopicModal (topic_id);  
-        updateSidebarPlaylist(); 
-    },
-  });
+var simpleList = document.getElementById("simpleList")
+console.log(simpleList)
+
+new Sortable(simpleList, {
+  handle:'.handle',
+  animation:200,
+
+})
+
+// Sortable.create(simpleList, {
+//     onRemove: function (evt) {
+//         // console.log('Playlist items(s) removed');
+//     },
+//     onUpdate: function (evt) {
+//         // console.log('Playlist re-sorted');
+//         var newTopId = document.getElementById("simpleList").childNodes;
+//         var topic_id = newTopId[0].id;
+
+//         // Stopped opening of Youtube Video on evry drag and drop
+//         openTopicModal (topic_id);  
+//         updateSidebarPlaylist(); 
+//     },
+//   });
 
 //Create playlist array
 var videoPlayList = [];

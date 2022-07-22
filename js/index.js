@@ -214,23 +214,22 @@ var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
 
 function glossaryTerms(firstChar){
     lastClickedTermList = firstChar;
-    $("#glossary-entries"+firstChar).empty();
+    $("#glossary-entries").empty();
   var find_glossary_terms = Object.values(keywords);
   for (var i = 0; i < find_glossary_terms.length; i++){
     var new_glossary_entry = find_glossary_terms[i];
     var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
     var target_terms = new_glossary_entry.name;
-    if(target_terms.charAt(0).toUpperCase() == firstChar){
-        $("#glossary-entries"+firstChar).append(glossary_list);
+    if(target_terms.charAt(0).toUpperCase() == lastClickedTermList){
+    $("#glossary-entries").append(glossary_list);
     } 
   }
   getFirstDef();
  }
 
-//Get the most recently clicked glossary term....(old comment)
-//but the new design doesn't need default glossary display anymore, so I commented out
-// var lastClickedDef = 0; 
-// var lastClickedTermList = "A";
+//Get the most recently clicked glossary term
+var lastClickedDef = 0; 
+var lastClickedTermList = "A";
 function getFirstDef(){
     if ($('#glossary-defs-list').is(':empty') && current_page =="glossary.html"){
         if(topics_loaded == true){
@@ -287,10 +286,7 @@ function toggleAlphabeticalList() {
 
 //Remove glossary content
 function clearGlossary(){
-    var find_glossary_terms = Object.values(keywords);
-    for (var i = 0; i < find_glossary_terms.length; i++){
-        $("#glossary-entries"+alphabet[i]).empty();
-    }
+    $("#glossary-entries").empty();
     $("#glossary-defs-list").empty();
     $("#glossary-defs").empty();
     $("#glossary-links").empty();
@@ -831,21 +827,7 @@ function init() {
 
 
     if (current_page == "glossary.html"){
-        // glossaryTerms("A");
-        var html_dropdown_main = "";
-        var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        for (var i = 0, l = alphabet.length; l > i; i++) {
-            html_dropdown_main += "<div class=\"dropdown\">";
-            html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
-            html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
-            html_dropdown_main += "<ul>";
-            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
-            html_dropdown_main += "</ul>";
-            html_dropdown_main += "</div>";
-            html_dropdown_main += "</div>";
-        }
-
-        document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
+        glossaryTerms("A");
     }
 }
 

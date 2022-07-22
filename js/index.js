@@ -4,6 +4,11 @@ var region_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2
 var contributor_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=738174222&single=true&output=csv";
 var glossary_data_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpkwxZi2m3YUVmyEG3iPFYUUOZlhldW6d_TLGfvjyr0fFkBA_k_yR48RZoL0r4FwRCJz--7nv3KZBl/pub?gid=739147405&single=true&output=csv";
 
+// Add to playList
+
+const toggleSelect = (e) => {
+    console.log(e.target)
+}
 
 // Dev spreadsheet
 // var public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1Aqez9uNTS2wBdOdsOgxZwQBppINTMS46U2eVyIEObeQ/edit?usp=sharing";
@@ -37,7 +42,7 @@ $(document).ready(function () {
         includeSelectAllOption: true,
         buttonText: function(options, select) {
             var total_options = $('#affiliations-filter').children('option').length;
-            if (options.length == 0) {
+            if (options.length === 0) {
                 return 'Affiliations (0)';
             } else if (options.length === total_options) {
                 return 'Affiliations (all)';
@@ -67,7 +72,7 @@ $(document).ready(function () {
         includeSelectAllOption: true,
         buttonText: function(options, select) {
             var total_options = $('#regions-filter').children('option').length;
-            if (options.length == 0) {
+            if (options.length === 0) {
                 return 'Regions (0)';
             } else if (options.length === total_options) {
                 return 'Regions (all)';
@@ -97,7 +102,7 @@ $(document).ready(function () {
         includeSelectAllOption: true,             
         buttonText: function(options, select) {
             var total_options = $('#years-filter').children('option').length;
-            if (options.length == 0) {
+            if (options.length === 0) {
                 return 'Years (0)';
             } else if (options.length === total_options) {
                 return 'Years (all)';
@@ -128,49 +133,58 @@ $(document).ready(function () {
         $('#results-container').removeClass('no-overlay');
     }
 
-    document.getElementById("close-overlay-btn").addEventListener("click", closeOverlay);
+    const closeOverlayBtn= document.getElementById('close-overlay-button')
+    closeOverlayBtn.addEventListener("click", closeOverlay);
 
 })
 
-function Topic (id, topic, contributor, affiliation, subaffiliation, youtube_link, mco_link, topic_abstract, time_period, region, keywords) {
-    this.id = id;
-    this.topic = topic;
-    this.contributor = contributor;
-    this.affiliation = affiliation;
-    this.subaffiliation = subaffiliation;
-    this.youtube_link = youtube_link;
-    this.mco_link = mco_link
-    this.video_id = youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
-    this.topic_abstract = topic_abstract;
-    this.time_period = time_period;
-    this.region = region;
-    this.keywords = keywords;
-    this.inPlaylist = false;
+class Topic {
+    constructor(id, topic, contributor, affiliation, subaffiliation, youtube_link, mco_link, topic_abstract, time_period, region, keywords) {
+        this.id = id;
+        this.topic = topic;
+        this.contributor = contributor;
+        this.affiliation = affiliation;
+        this.subaffiliation = subaffiliation;
+        this.youtube_link = youtube_link;
+        this.mco_link = mco_link;
+        this.video_id = youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
+        this.topic_abstract = topic_abstract;
+        this.time_period = time_period;
+        this.region = region;
+        this.keywords = keywords;
+        this.inPlaylist = false;
+    }
 }
 
-function Contributor (id, name, affiliation, subaffiliation, total_contributions) {
-    this.id = id;
-    this.name = name;
-    this.affiliation = affiliation;
-    this.subaffiliation = subaffiliation;
-    this.total_contributions = total_contributions;
-    this.transcript_link = '';
+class Contributor {
+    constructor(id, name, affiliation, subaffiliation, total_contributions) {
+        this.id = id;
+        this.name = name;
+        this.affiliation = affiliation;
+        this.subaffiliation = subaffiliation;
+        this.total_contributions = total_contributions;
+        this.transcript_link = '';
+    }
 }
 
-function Region (id, name, desc, count, image) {
-    this.id = id;
-    this.name = name;
-    this.desc = desc;
-    this.count = count;
-    this.image = image;
-    this.entries = [];
+class Region {
+    constructor(id, name, desc, count, image) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.count = count;
+        this.image = image;
+        this.entries = [];
+    }
 }
 
-function Keyword (id, name, desc, count) {
-    this.id = id;
-    this.name = name;
-    this.desc = desc;
-    this.keyword_count = count;
+class Keyword {
+    constructor(id, name, desc, count) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.keyword_count = count;
+    }
 }
 
 var topics = [];
@@ -200,22 +214,23 @@ var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
 
 function glossaryTerms(firstChar){
     lastClickedTermList = firstChar;
-    $("#glossary-entries").empty();
+    $("#glossary-entries"+firstChar).empty();
   var find_glossary_terms = Object.values(keywords);
   for (var i = 0; i < find_glossary_terms.length; i++){
     var new_glossary_entry = find_glossary_terms[i];
     var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
     var target_terms = new_glossary_entry.name;
     if(target_terms.charAt(0).toUpperCase() == firstChar){
-    $("#glossary-entries").append(glossary_list);
+        $("#glossary-entries"+firstChar).append(glossary_list);
     } 
   }
   getFirstDef();
  }
 
-//Get the most recently clicked glossary term
-var lastClickedDef = 0; 
-var lastClickedTermList = "A";
+//Get the most recently clicked glossary term....(old comment)
+//but the new design doesn't need default glossary display anymore, so I commented out
+// var lastClickedDef = 0; 
+// var lastClickedTermList = "A";
 function getFirstDef(){
     if ($('#glossary-defs-list').is(':empty') && current_page =="glossary.html"){
         if(topics_loaded == true){
@@ -272,7 +287,10 @@ function toggleAlphabeticalList() {
 
 //Remove glossary content
 function clearGlossary(){
-    $("#glossary-entries").empty();
+    var find_glossary_terms = Object.values(keywords);
+    for (var i = 0; i < find_glossary_terms.length; i++){
+        $("#glossary-entries"+alphabet[i]).empty();
+    }
     $("#glossary-defs-list").empty();
     $("#glossary-defs").empty();
     $("#glossary-links").empty();
@@ -283,23 +301,72 @@ function clearGlossary(){
 function addToSidebar (new_topic) {
     console.log(new_topic);
     var video_id = new_topic.youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
-    var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel" title="Click and drag to re-order">' +
-                                    '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
-                                        '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +
-                                            '<div class="image-wrap topic-yt-thumbnail">' +
-                                                '<img class="results-media-image img-responsive pull-left" src="https://img.youtube.com/vi/' + video_id + '/mqdefault.jpg">' +
-                                                '<div onclick="event.stopPropagation()">' + 
-                                                '<input type="button" id="playlist-btn-' + new_topic.id + '" class="btn btn-secondary pull-left results-add-playlist-button" value="+" />' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="media-body results-media-body">' +
-                                                '<h4 class="results-media-heading"><b>' + new_topic.topic + '</b></h4>' + 
-                                                '<p class="results-media-contributor"><small>' + new_topic.contributor + ' (' + contributors[new_topic.contributor].total_contributions + ')</small></p>' + 
-                                                '<p class="results-media-abstract-excerpt"><small>' + new_topic.topic_abstract + '</small></p>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' + 
-                                '</div>';
+    // var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel" title="Click and drag to re-order">' +
+    //                                 '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
+    //                                     '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +
+    //                                         '<div class="image-wrap topic-yt-thumbnail">' +
+    //                                             '<img class="results-media-image img-responsive pull-left" src="https://img.youtube.com/vi/' + video_id + '/mqdefault.jpg">' +
+    //                                             '<div onclick="event.stopPropagation()">' + 
+    //                                             '<input type="button" id="playlist-btn-' + new_topic.id + '" class="btn btn-secondary pull-left results-add-playlist-button handle" value="+" />' +
+    //                                             '</div>' +
+    //                                         '</div>' +
+    //                                         '<div class="media-body results-media-body">' +
+    //                                             '<h4 class="results-media-heading"><b>' + new_topic.topic + '</b></h4>' + 
+    //                                             '<p class="results-media-contributor"><small>' + new_topic.contributor + ' (' + contributors[new_topic.contributor].total_contributions + ')</small></p>' + 
+    //                                             '<p class="results-media-abstract-excerpt"><small>' + new_topic.topic_abstract + '</small></p>' +
+    //                                         '</div>' +
+    //                                     '</div>' +
+    //                                 '</div>' + 
+    //                             '</div>';
+
+            //                     const new_sidebar_element =  `<div id=${new_topic.id} class='panel panel-default results-panel'>
+            //                     <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body"  onClick="openTopicModal(${new_topic.id})">
+            //                     <div class="media results-sidebar-media" data-video-id=${video_id} >
+            //                         <div class="image-wrap topic-yt-thumbnail">
+            //                             <img class="img-fluid" src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg">
+            //                             <div onclick="event.stopPropagation()">
+            //                             <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary pull-left results-add-playlist-button handle" value="+" />
+            //                             </div>
+            //                         </div>
+            //                         <div class="media-body results-media-body">
+            //                             <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+            //                             <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p> 
+            //                             <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p>
+            //                             </div>
+                            
+          
+            //   <i class="fas fa-grip-lines handle"></i>
+           
+            //                     </div>
+            //                 </div>
+            //                     </div>`
+
+            //    <div class="btn heart flex-center" onclick="event.stopPropagation()">
+            //       <i id="playlist-btn-${new_topic.id}" class="fa fa-heart"></i>
+            //   </div>
+                            const new_sidebar_element = `
+                           <div id=${new_topic.id} class="panel panel-default results-panel">
+                           <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
+
+                          <div onclick="event.stopPropagation()">
+                                      <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+                                      </div>
+                     
+                      <div class="thumbnail flex-center" data-video-id=${video_id}>
+                        <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+                      </div>
+                      <div class="details">
+                      <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+                      <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
+                      <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
+                      </div>
+
+                      <div class="handle flex-center" onclick="event.stopPropagation()">
+                            <i class="fas fa-grip-horizontal"></i>
+                      </div>
+
+                    </div>
+                           </div>`
     $("#simpleList").append(new_sidebar_element);
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
@@ -312,26 +379,55 @@ function addToSidebar (new_topic) {
     }  
 }
 
+
+
+
+
+
 //Display topic cards related to currently selected glossary keywords
 function addToRelatedVideos (new_topic) {
     var video_id = new_topic.youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
-    var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel">' +
-                                    '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
-                                        '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +
-                                            '<div class="image-wrap topic-yt-thumbnail">' +
-                                                '<img class="results-media-image img-responsive pull-left" src="https://img.youtube.com/vi/' + video_id + '/mqdefault.jpg">' +
-                                                '<div onclick="event.stopPropagation()">' + 
-                                                '<input type="button" id="playlist-btn-' + new_topic.id + '" class="btn btn-secondary pull-left results-add-playlist-button" value="+" />' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="media-body results-media-body">' +
-                                                '<h4 class="results-media-heading"><b>' + new_topic.topic + '</b></h4>' + 
-                                                '<p class="results-media-contributor"><small>' + new_topic.contributor + ' (' + contributors[new_topic.contributor].total_contributions + ')</small></p>' + 
-                                                '<p class="results-media-abstract-excerpt"><small>' + new_topic.topic_abstract + '</small></p>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' + 
-                                '</div>';
+    // var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel">' +
+    //                                 '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
+    //                                     '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +
+    //                                         '<div class="image-wrap topic-yt-thumbnail">' +
+    //                                             '<img class="results-media-image img-responsive pull-left" src="https://img.youtube.com/vi/' + video_id + '/mqdefault.jpg">' +
+    //                                             '<div onclick="event.stopPropagation()">' + 
+    //                                             '<input type="button" id="playlist-btn-' + new_topic.id + '" class="btn btn-secondary pull-left results-add-playlist-button handle" value="+" />' +
+    //                                             '</div>' +
+    //                                         '</div>' +
+    //                                         '<div class="media-body results-media-body">' +
+    //                                             '<h4 class="results-media-heading"><b>' + new_topic.topic + '</b></h4>' + 
+    //                                             '<p class="results-media-contributor"><small>' + new_topic.contributor + ' (' + contributors[new_topic.contributor].total_contributions + ')</small></p>' + 
+    //                                             '<p class="results-media-abstract-excerpt"><small>' + new_topic.topic_abstract + '</small></p>' +
+    //                                         '</div>' +
+    //                                     '</div>' +
+    //                                 '</div>' + 
+    //                             '</div>';
+
+    const new_sidebar_element = `
+    <div id=${new_topic.id}>
+    <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
+
+   <div onclick="event.stopPropagation()">
+               <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+               </div>
+
+<div class="thumbnail flex-center" data-video-id=${video_id}>
+ <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+</div>
+<div class="details">
+<h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+<p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
+<p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
+</div>
+
+<div class="handle flex-center">
+ <i class="fa fa-bars"></i>
+</div>
+
+</div>
+    </div>`
     $("#related_videos").append(new_sidebar_element);
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
@@ -617,12 +713,12 @@ function checkSortToolTip(){
     } else {
         if(is_playlist_active){
         var topic_id = document.getElementById("simpleList").firstChild.id;
-            if (playlist_length == 1){
-            $("#" + topic_id).attr("title", ""); 
-            openTopicModal(topic_id);
-            } else {
-                openTopicModal(topic_id);
-            }
+            // if (playlist_length == 1){
+            // $("#" + topic_id).attr("title", ""); 
+            // openTopicModal(topic_id);
+            // } else {
+            //     openTopicModal(topic_id);
+            // }
         }    
     } 
 }
@@ -735,7 +831,21 @@ function init() {
 
 
     if (current_page == "glossary.html"){
-        glossaryTerms("A");
+        // glossaryTerms("A");
+        var html_dropdown_main = "";
+        var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        for (var i = 0, l = alphabet.length; l > i; i++) {
+            html_dropdown_main += "<div class=\"dropdown\">";
+            html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
+            html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
+            html_dropdown_main += "<ul>";
+            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"></div> ";
+            html_dropdown_main += "</ul>";
+            html_dropdown_main += "</div>";
+            html_dropdown_main += "</div>";
+        }
+
+        document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
     }
 }
 

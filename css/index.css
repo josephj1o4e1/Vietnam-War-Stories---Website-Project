@@ -591,6 +591,7 @@ body {
 
 .ul-glossary-entries {
     text-decoration: none;
+    list-style-type: none;
     font-size: 0.4em;
     margin-bottom: 8px;
     margin-right: 2px;

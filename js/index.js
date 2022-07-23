@@ -501,8 +501,9 @@ function openTopicModal (topic_id) {
         }
     });
     
-$('[data-toggle="tooltip"]').tooltip();   
+    $('[data-toggle="tooltip"]').tooltip();   
 }
+
 $('#topic-modal').on('shown.bs.modal', function() {
     $(document).off('focusin.modal');
 });

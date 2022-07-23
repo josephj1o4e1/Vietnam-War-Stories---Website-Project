@@ -556,6 +556,7 @@ body {
     font-weight: bold;
     margin: 2EM 0 1EM 1EM;
     text-align: center;
+    font-size: 1em;
 }
 
 .dropdown {
@@ -589,12 +590,12 @@ body {
     color: black;
     padding: 12px 16px;
     /* font-size: 16px; */
-    font-size: 0.3em !important;
+    font-size: 0.3em;
     text-decoration: none;
     display: inline-block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.ul-glossary-entries:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
 

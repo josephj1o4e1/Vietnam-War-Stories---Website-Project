@@ -233,7 +233,7 @@ function glossaryTerms(firstChar){
     var find_glossary_terms = Object.values(keywords);
     for (var i = 0; i < find_glossary_terms.length; i++){
         var new_glossary_entry = find_glossary_terms[i];
-        var glossary_list =  '<a href="#" ><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
+        var glossary_list =  '<a href="#" class="ul-glossary-entries"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
         var target_terms = new_glossary_entry.name;
         if(target_terms.charAt(0).toUpperCase() == firstChar){
             $("#glossary-entries"+firstChar).append(glossary_list);
@@ -858,7 +858,7 @@ function init() {
             html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
             html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
             html_dropdown_main += "<ul class=\"ul-glossary\">";
-            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\" class=\"ul-glossary-entries\"> </div> ";
+            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"> </div> ";
             html_dropdown_main += "</ul>";
             html_dropdown_main += "</div>";
             html_dropdown_main += "</div>";

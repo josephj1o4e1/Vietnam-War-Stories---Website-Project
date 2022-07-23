@@ -590,18 +590,17 @@ body {
 }
 
 .ul-glossary-entries {
-    font-size: 0.8em;
-    margin-bottom: 10px;
+    font-size: 0.4em;
+    margin-bottom: 5px;
     /* margin: 0px 2EM 8EM 0px; */
-    color: black;
-    padding: 12px 16px;    
+    color: black;  
     text-decoration: none;
     display: inline-block;
 }
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.ul-glossary-entries li:hover {font-weight: bold; background-color: #ddd;}
+.ul-glossary-entries li:hover {font-weight: bold; background-color: #ddd; font-size: 0.4em;}
 
 #glossary-terms {
    margin-bottom: 2EM; 

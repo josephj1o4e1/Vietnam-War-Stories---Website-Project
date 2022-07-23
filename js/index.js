@@ -305,6 +305,7 @@ function toggleAlphabeticalList() {
 //Remove glossary content
 function clearGlossary(){
     var find_glossary_terms = Object.values(keywords);
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     for (var i = 0; i < find_glossary_terms.length; i++){
         $("#glossary-entries"+alphabet[i]).empty();
     }

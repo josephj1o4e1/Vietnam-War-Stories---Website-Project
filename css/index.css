@@ -556,7 +556,7 @@ body {
     font-weight: bold;
     margin: 2EM 0 1EM 1EM;
     text-align: center;
-    font-size: 1em;
+    font-size: 5em;
 }
 
 .dropdown {
@@ -595,7 +595,7 @@ body {
     display: inline-block;
 }
 
-.ul-glossary-entries:hover {background-color: #ddd;}
+.ul-glossary-entries a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
 

@@ -577,7 +577,15 @@ body {
     /* font-size: 0.875em; */
 }
 
-.dropdown-content a {
+/* .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+} */
+
+.ul-glossary-entries {
     color: black;
     padding: 12px 16px;
     font-size: 16px;

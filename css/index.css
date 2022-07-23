@@ -575,7 +575,7 @@ body {
     overflow: auto;
     letter-spacing: .50EM;
     text-align: left;
-    font-size: 0.8em;
+    font-size: 0.1em;
 }
 
 /* .dropdown-content a {
@@ -594,7 +594,7 @@ body {
     display: inline-block;
 }
 
-.ul-glossary-entries a:hover {background-color: #ddd;}
+/* .ul-glossary-entries a:hover {background-color: #ddd;} */
 
 .dropdown:hover .dropdown-content {display: block;}
 

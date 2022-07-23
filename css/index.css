@@ -592,10 +592,10 @@ body {
 .ul-glossary-entries {
     font-size: 0.4em;
     margin-bottom: 8px;
-    margin-left: 2px;
+    margin-right: 2px;
     color: black;  
     text-decoration: none;
-    display: inline-block;
+    display: block;
 }
 
 .dropdown:hover .dropdown-content {display: block;}

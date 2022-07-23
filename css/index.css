@@ -591,8 +591,8 @@ body {
 
 .ul-glossary-entries {
     font-size: 0.4em;
-    margin-bottom: 5px;
-    /* margin: 0px 2EM 8EM 0px; */
+    margin-bottom: 8px;
+    margin-left: 2px;
     color: black;  
     text-decoration: none;
     display: inline-block;
@@ -600,7 +600,7 @@ body {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.ul-glossary-entries li:hover {font-weight: bold; background-color: #ddd; font-size: 0.4em;}
+.ul-glossary-entries li:hover {font-weight: bold; background-color: #ddd; }
 
 #glossary-terms {
    margin-bottom: 2EM; 

@@ -857,8 +857,8 @@ function init() {
             html_dropdown_main += "<div class=\"dropdown\">";
             html_dropdown_main += "<a href=\"#\" onmouseover=\"glossaryTerms('" + alphabet[i] +"')\">" + alphabet[i] + "</a>";
             html_dropdown_main += "<div id=\"glossary-terms\" class=\"dropdown-content\">";
-            html_dropdown_main += "<ul class=\"ul-glossary-entries\">";
-            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\"> </div> ";
+            html_dropdown_main += "<ul class=\"ul-glossary\">";
+            html_dropdown_main += " <div id=\"glossary-entries" + alphabet[i] + "\" class=ul-glossary-entries> </div> ";
             html_dropdown_main += "</ul>";
             html_dropdown_main += "</div>";
             html_dropdown_main += "</div>";

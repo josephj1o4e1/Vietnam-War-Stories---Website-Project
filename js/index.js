@@ -233,7 +233,7 @@ function glossaryTerms(firstChar){
     var find_glossary_terms = Object.values(keywords);
     for (var i = 0; i < find_glossary_terms.length; i++){
         var new_glossary_entry = find_glossary_terms[i];
-        var glossary_list =  '<a href="#"><li class="ul-glossary-entries" onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
+        var glossary_list =  '<a href="#" class="ul-glossary-entries"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
         var target_terms = new_glossary_entry.name;
         if(target_terms.charAt(0).toUpperCase() == firstChar){
             $("#glossary-entries"+firstChar).append(glossary_list);

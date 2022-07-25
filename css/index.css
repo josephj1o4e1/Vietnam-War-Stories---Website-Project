@@ -585,7 +585,7 @@ body {
 
 .dropdown-content ul {
     text-decoration: none;
-    list-style-type: none;
+    list-style: none;
 }
 
 .dropdown-content ul a {
@@ -596,9 +596,9 @@ body {
     text-decoration: none;
     list-style-type: none;
     font-size: 1em;
-    margin-bottom: 8px;
+    margin-bottom: 0.4em;
     color: #0298d3;    
-    letter-spacing: .10EM;
+    letter-spacing: .10em;
     text-align: left;
 }
 

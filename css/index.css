@@ -585,7 +585,7 @@ body {
     display: inline-block;
 } */
 
-.ul-glossary {
+.dropdown-content ul {
     text-decoration: none;
     list-style-type: none;
     font-size: 0.8em;
@@ -595,7 +595,7 @@ body {
     color: black;    
 }
 
-.ul-glossary-entries {
+.dropdown-content ul .ul-glossary-entries {
     /* text-decoration: none;
     list-style-type: none;
     font-size: 0.8em;
@@ -605,9 +605,19 @@ body {
     color: black;    
 }
 
+.dropdown-content ul .ul-glossary-entries li {
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 0.1em;
+    margin-bottom: 8px;
+    margin-right: 2px;
+    margin-left: 0px;
+    color: black;    
+}
+
 .dropdown:hover .dropdown-content {display: block;}
 
-.ul-glossary-entries li:hover {font-size: 2em; background-color: #ddd; }
+.dropdown-content ul .ul-glossary-entries li:hover {background-color: #ddd; }
 
 #glossary-terms {
    margin-bottom: 2EM; 

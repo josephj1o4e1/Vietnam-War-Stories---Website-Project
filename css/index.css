@@ -586,6 +586,7 @@ body {
 .dropdown-content ul {
     text-decoration: none;
     list-style: none;
+    padding: 0;
 }
 
 .dropdown-content ul a {

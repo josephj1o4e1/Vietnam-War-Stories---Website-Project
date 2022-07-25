@@ -588,27 +588,12 @@ body {
 .dropdown-content ul {
     text-decoration: none;
     list-style-type: none;
-    font-size: 0.8em;
-    margin-bottom: 8px;
-    margin-right: 2px;
-    margin-left: 0px;
-    color: black;    
 }
 
-.dropdown-content ul .ul-glossary-entries {
-    /* text-decoration: none;
-    list-style-type: none;
-    font-size: 0.8em;
-    margin-bottom: 8px;
-    margin-right: 2px;
-    margin-left: 0px; */
-    color: black;    
-}
-
-.dropdown-content ul .ul-glossary-entries li {
+.dropdown-content ul li {
     text-decoration: none;
     list-style-type: none;
-    font-size: 0.1em;
+    font-size: 0.8em;
     margin-bottom: 8px;
     margin-right: 2px;
     margin-left: 0px;
@@ -617,7 +602,7 @@ body {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown-content ul .ul-glossary-entries li:hover {background-color: #ddd; }
+.dropdown-content ul li:hover {background-color: #ddd; }
 
 #glossary-terms {
    margin-bottom: 2EM; 

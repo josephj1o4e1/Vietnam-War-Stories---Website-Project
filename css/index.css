@@ -573,8 +573,6 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     overflow: auto;
-    letter-spacing: .50EM;
-    text-align: left;
 }
 
 /* .dropdown-content a {
@@ -591,13 +589,11 @@ body {
 }
 
 .dropdown-content ul li {
-    text-decoration: none;
-    list-style-type: none;
     font-size: 0.8em;
     margin-bottom: 8px;
-    margin-right: 2px;
-    margin-left: 0px;
     color: black;    
+    letter-spacing: .50EM;
+    text-align: left;
 }
 
 .dropdown:hover .dropdown-content {display: block;}

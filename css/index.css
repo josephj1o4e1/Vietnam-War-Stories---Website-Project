@@ -601,8 +601,6 @@ body {
 }
 
 .glossary-entriesA {
-    text-decoration: none;
-    list-style-type: none;
     font-size: 0.1em;
     color: black;  
 }

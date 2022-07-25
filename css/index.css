@@ -592,12 +592,19 @@ body {
 .ul-glossary-entries {
     text-decoration: none;
     list-style-type: none;
-    font-size: 0.1em;
+    font-size: 0.8em;
     margin-bottom: 8px;
     margin-right: 2px;
     margin-left: 0px;
     color: black;      
     display: block;
+}
+
+.glossary-entriesA {
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 0.1em;
+    color: black;  
 }
 
 .dropdown:hover .dropdown-content {display: block;}

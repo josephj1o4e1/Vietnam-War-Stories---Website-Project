@@ -596,18 +596,12 @@ body {
     margin-bottom: 8px;
     margin-right: 2px;
     margin-left: 0px;
-    color: black;      
-    display: block;
-}
-
-.glossary-entriesA {
-    font-size: 0.1em;
-    color: black;  
+    color: black;    
 }
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.ul-glossary-entries li:hover {font-weight: bold; background-color: #ddd; }
+.ul-glossary-entries li:hover {font-size: 2em; background-color: #ddd; }
 
 #glossary-terms {
    margin-bottom: 2EM; 

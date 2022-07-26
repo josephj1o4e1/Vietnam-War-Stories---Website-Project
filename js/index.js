@@ -129,7 +129,7 @@ $(document).ready(function () {
     });
 
 
-    $('.modal-topic-video-frame iframe').on('hidden.bs.modal', function() {
+    $('.modal iframe').on('hidden.bs.modal', function() {
         alert('The modal is completely hidden now!');
         // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
     });

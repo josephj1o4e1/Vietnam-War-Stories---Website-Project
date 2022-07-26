@@ -129,6 +129,12 @@ $(document).ready(function () {
     });
 
 
+    $('.modal-topic-video-frame iframe').on('hidden.bs.modal', function() {
+        alert('The modal is completely hidden now!');
+        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+    });
+
+
     if(!overlay_flag) {
         $('#results-container').removeClass('no-overlay');
     }
@@ -472,10 +478,6 @@ function openTopicModal (topic_id) {
         video_url = topics[topic_id].mco_link + "?urlappend=%2Fembed";
     }
     console.log(video_url);
-    $(".modal-topic-video-frame iframe").on('hidden.bs.modal', function() {
-        alert('The modal is completely hidden now!');
-        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-    });
     $('.modal-topic-video-frame').attr('src', video_url);                                 
     $('.modal-topic-title').html(topics[topic_id].topic);
     $('.modal-topic-contributor').html(topics[topic_id].contributor + "   |   " + contributors[topics[topic_id].contributor].affiliation + " | " + contributors[topics[topic_id].contributor].subaffiliation);

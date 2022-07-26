@@ -507,9 +507,9 @@ function openTopicModal (topic_id) {
 }
 
 
-$('#topic-modal').on('shown.bs.modal', function() {
-    $(document).off('focusin.modal');
-});
+// $('#topic-modal').on('shown.bs.modal', function() {
+//     $(document).off('focusin.modal');
+// });
 
 
 $("#topic-modal iframe").on('hidden.bs.modal', function() {

@@ -507,13 +507,13 @@ function openTopicModal (topic_id) {
 }
 
 
-$('#topic-modal').on('shown.bs.modal', function() {
-    $(document).off('focusin.modal');
+$(".modal-topic-video-frame").on('hidden.bs.modal', function() {
+    $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
 });
 
 
-$(".modal-topic-video-frame iframe").on('hidden.bs.modal', function() {
-    $(".modal-topic-video-frame iframe").attr("src", "");
+$('#topic-modal').on('shown.bs.modal', function() {
+    $(document).off('focusin.modal');
 });
 
 

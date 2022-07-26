@@ -129,10 +129,10 @@ $(document).ready(function () {
     });
 
 
-    $('iframe').on('hidden.bs.modal', function() {
-        alert('The modal is completely hidden now!');
-        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-    });
+    // $('.modal').on('hidden.bs.modal', function() {
+    //     alert('The modal is completely hidden now!');
+    //     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+    // });
 
 
     if(!overlay_flag) {

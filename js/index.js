@@ -472,7 +472,7 @@ function openTopicModal (topic_id) {
         video_url = topics[topic_id].mco_link + "?urlappend=%2Fembed";
     }
     console.log(video_url);
-    $(".modal iframe").on('hidden.bs.modal', function() {
+    $(".modal-topic-video-frame iframe").on('hidden.bs.modal', function() {
         alert('The modal is completely hidden now!');
         // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
     });

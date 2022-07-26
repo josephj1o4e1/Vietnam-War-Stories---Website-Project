@@ -512,6 +512,10 @@ function openTopicModal (topic_id) {
     $('[data-toggle="tooltip"]').tooltip();   
 }
 
+$('.modal-topic-video-frame').on('hidden.bs.modal', function() {
+    alert('The modal is completely hidden now!');
+    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+});
 
 $('#topic-modal').on('shown.bs.modal', function() {
     $(document).off('focusin.modal');

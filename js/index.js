@@ -472,6 +472,10 @@ function openTopicModal (topic_id) {
         video_url = topics[topic_id].mco_link + "?urlappend=%2Fembed";
     }
     console.log(video_url);
+    $("#topic-modal iframe").on('hidden.bs.modal', function() {
+        alert('The modal is completely hidden now!');
+        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+    });
     $('.modal-topic-video-frame').attr('src', video_url);                                 
     $('.modal-topic-title').html(topics[topic_id].topic);
     $('.modal-topic-contributor').html(topics[topic_id].contributor + "   |   " + contributors[topics[topic_id].contributor].affiliation + " | " + contributors[topics[topic_id].contributor].subaffiliation);
@@ -512,10 +516,10 @@ $('#topic-modal').on('shown.bs.modal', function() {
 });
 
 
-$("#topic-modal .embed-responsive iframe").on('hidden.bs.modal', function(e) {
-    alert('The modal is completely hidden now!');
-    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-});
+// $("#topic-modal .embed-responsive iframe").on('hidden.bs.modal', function() {
+//     alert('The modal is completely hidden now!');
+//     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+// });
 
 // $(document).on('hidden.bs.modal', '#topic-modal iframe', function(){
 //     alert('The modal is completely hidden now!');

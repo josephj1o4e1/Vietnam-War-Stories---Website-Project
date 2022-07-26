@@ -267,21 +267,21 @@ function getGlossaryDef(glossary_id){
     $("#related_videos").empty();
     var related_topic_found = false;
     var glossary_list = Object.values(keywords);
-    var glossary_entry = glossary_list[glossary_id].name
+    var glossary_entry = glossary_list[glossary_id].name;
     var glossary_def = glossary_list[glossary_id].desc;     
-        for (var i = 0; i< topics.length; i++){
-            var new_topic_id = topics[i].id;
-            for (var j = 0; j < topics[new_topic_id].keywords.length; j++){
-                var new_topic_keywords = topics[new_topic_id].keywords[j];
-                if(new_topic_keywords == glossary_entry){
-                    //console.log(new_topic_keywords + " found in topic " + new_topic_id);
-                    var found_topic = new_topic_id;
-                    addToRelatedVideos(topics[found_topic]);
-                    related_topic_found = true;
-                    refreshSavePlaylist();
-                }   
-            }
+    for (var i = 0; i< topics.length; i++){
+        var new_topic_id = topics[i].id;
+        for (var j = 0; j < topics[new_topic_id].keywords.length; j++){
+            var new_topic_keywords = topics[new_topic_id].keywords[j];
+            if(new_topic_keywords == glossary_entry){
+                //console.log(new_topic_keywords + " found in topic " + new_topic_id);
+                var found_topic = new_topic_id;
+                addToRelatedVideos(topics[found_topic]);
+                related_topic_found = true;
+                refreshSavePlaylist();
+            }   
         }
+    }
     $("#glossary-defs-list").empty().append("<h4>" + glossary_entry + "</h4>");
     $("#glossary-defs").empty().append(glossary_def); 
     
@@ -425,27 +425,29 @@ function addToRelatedVideos (new_topic) {
 
     const new_sidebar_element = `
     <div id=${new_topic.id}>
-    <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
+        <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
-   <div onclick="event.stopPropagation()">
-               <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
-               </div>
+            <div onclick="event.stopPropagation()">
+                <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+            </div>
 
-<div class="thumbnail flex-center" data-video-id=${video_id}>
- <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
-</div>
-<div class="details">
-<h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
-<p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
-<p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
-</div>
+            <div class="thumbnail flex-center" data-video-id=${video_id}>
+                <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+            </div>
 
-<div class="handle flex-center">
- <i class="fa fa-bars"></i>
-</div>
+            <div class="details">
+                <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+                <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
+                <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
+            </div>
 
-</div>
+            <div class="handle flex-center">
+                <i class="fa fa-bars"></i>
+            </div>
+
+        </div>
     </div>`
+
     $("#related_videos").append(new_sidebar_element);
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
@@ -504,9 +506,16 @@ function openTopicModal (topic_id) {
     $('[data-toggle="tooltip"]').tooltip();   
 }
 
+
 $('#topic-modal').on('shown.bs.modal', function() {
     $(document).off('focusin.modal');
 });
+
+
+$(".modal-topic-video-frame").on('hidden.bs.modal', function() {
+    $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+});
+
 
 function downloadTranscript(topic_id) {
     alert(contributors[topics[topid_id].contributor].transcript_link);
@@ -778,75 +787,68 @@ function init() {
                     regionTotal ++;
                 }
             }
-                // Contributor Data
-    Papa.parse(contributor_data_url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data
-            for (let i = 0; i < data.length; i++) {
-                current = data[i];
-                if (contributors[current.contributor_name] == null) {
-                    contributors[current.contributor_name] = new Contributor (contributorsTotal, current.contributor_name, current.primary_affiliation, current.secondary_affiliation, current.total_contributions);
-                    contributorsTotal ++;
-                    
-                    if (current.transcript_link != '') { contributors[current.contributor_name].transcript_link = current.transcript_link; 
-                        // console.log (contributors[current.contributor_name]);
-                    }
-                }
-            }
-
-            // Map Data
-            Papa.parse(map_data_url, {
+            // Contributor Data
+            Papa.parse(contributor_data_url, {
                 download: true,
                 header: true,
                 complete: function(results) {
                     var data = results.data
                     for (let i = 0; i < data.length; i++) {
                         current = data[i];
-                        if (current.topic != '' && current.contributor != '' && current.youtube_link != '') {
-                            var new_topic = new Topic (topicTotal, current.topic, current.contributor, current.contributor_affiliation, current.contributor_subaffiliation,
-                                                        current.youtube_link, current.mco_link, current.topic_abstract, current.time_period, current.region, [current.keyword_1, current.keyword_2, current.keyword_3, current.keyword_4, current.keyword_5]);
-                            // if (current.region != '') { regions[current.region].entries.push(new_contribution); }
-                            if (current_page !='glossary.html'){
-                            addToSidebar(new_topic);
-                            refreshSavePlaylist();
+                        if (contributors[current.contributor_name] == null) {
+                            contributors[current.contributor_name] = new Contributor (contributorsTotal, current.contributor_name, current.primary_affiliation, current.secondary_affiliation, current.total_contributions);
+                            contributorsTotal ++;
+                            
+                            if (current.transcript_link != '') { contributors[current.contributor_name].transcript_link = current.transcript_link; 
+                                // console.log (contributors[current.contributor_name]);
                             }
-                            topics.push(new_topic);
-                            topicTotal ++;
                         }
                     }
-                    topics_loaded = true;
+
+                    // Map Data
+                    Papa.parse(map_data_url, {
+                        download: true,
+                        header: true,
+                        complete: function(results) {
+                            var data = results.data
+                            for (let i = 0; i < data.length; i++) {
+                                current = data[i];
+                                if (current.topic != '' && current.contributor != '' && current.youtube_link != '') {
+                                    var new_topic = new Topic (topicTotal, current.topic, current.contributor, current.contributor_affiliation, current.contributor_subaffiliation,
+                                                                current.youtube_link, current.mco_link, current.topic_abstract, current.time_period, current.region, [current.keyword_1, current.keyword_2, current.keyword_3, current.keyword_4, current.keyword_5]);
+                                    // if (current.region != '') { regions[current.region].entries.push(new_contribution); }
+                                    if (current_page !='glossary.html'){
+                                        addToSidebar(new_topic);
+                                        refreshSavePlaylist();
+                                    }
+                                    topics.push(new_topic);
+                                    topicTotal ++;
+                                }
+                            }
+                            topics_loaded = true;
+                        }    
+                    } )
                 }    
             } )
-        }    
-    } )
 
-    // Glossary Data
-    Papa.parse(glossary_data_url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data
-            for (let i = 0; i < data.length; i++) {
-                current = data[i];
-                if (keywords[current.keyword_name] == null) {
-                    keywords[current.keyword_name] = new Keyword (keywordsTotal, current.keyword_name, current.keyword_desc, current.keyword_count);
-                    keywordsTotal ++;
-                } 
-            }
-        }    
-    } )
-
-
-
-
+            // Glossary Data
+            Papa.parse(glossary_data_url, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    var data = results.data
+                    for (let i = 0; i < data.length; i++) {
+                        current = data[i];
+                        if (keywords[current.keyword_name] == null) {
+                            keywords[current.keyword_name] = new Keyword (keywordsTotal, current.keyword_name, current.keyword_desc, current.keyword_count);
+                            keywordsTotal ++;
+                        } 
+                    }
+                }    
+            } )
 
         }    
     } )
-
-
-
 
 
     if (current_page == "glossary.html"){
@@ -866,6 +868,7 @@ function init() {
 
         document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
     }
+
 }
 
 window.addEventListener('DOMContentLoaded', init)

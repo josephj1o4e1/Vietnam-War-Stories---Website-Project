@@ -512,7 +512,7 @@ $('#topic-modal').on('shown.bs.modal', function() {
 });
 
 
-$("#topic-modal .embed-responsive iframe").on('hidden.bs.modal', function() {
+$("#topic-modal .embed-responsive iframe").on('hidden.bs.modal', function(e) {
     alert('The modal is completely hidden now!');
     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
 });

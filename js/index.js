@@ -508,7 +508,8 @@ function openTopicModal (topic_id) {
 
 
 $(".modal-topic-video-frame").on('hidden.bs.modal', function() {
-    $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+    alert('The modal is completely hidden now!');
+    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
 });
 
 

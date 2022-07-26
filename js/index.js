@@ -507,16 +507,19 @@ function openTopicModal (topic_id) {
 }
 
 
-// $('#topic-modal').on('shown.bs.modal', function() {
-//     $(document).off('focusin.modal');
-// });
-
-
-$("#topic-modal iframe").on('hidden.bs.modal', function() {
-    alert('The modal is completely hidden now!');
-    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+$('#topic-modal').on('shown.bs.modal', function() {
+    $(document).off('focusin.modal');
 });
 
+
+// $("#topic-modal iframe").on('hidden.bs.modal', function() {
+//     alert('The modal is completely hidden now!');
+//     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+// });
+
+$(document).on('hidden.bs.modal', '#topic-modal iframe', function(){
+    alert('The modal is completely hidden now!');
+})
 
 
 function downloadTranscript(topic_id) {

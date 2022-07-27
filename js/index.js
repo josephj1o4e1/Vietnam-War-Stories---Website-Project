@@ -515,8 +515,8 @@ function openTopicModal (topic_id) {
 
 
 $('#topic-modal').on('shown.bs.modal', function() {
-    alert('The modal is SHOWN now!');
-    // $(document).off('focusin.modal');
+    // alert('The modal is SHOWN now!');
+    $(document).off('focusin.modal');
 });
 
 

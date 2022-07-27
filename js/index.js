@@ -131,7 +131,7 @@ $(document).ready(function () {
 
     $("#topic-modal-glossary").on('hidden.bs.modal', function() {
         alert('The modal is completely hidden now!');
-        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+        $("#topic-modal-glossary iframe").attr("src", $("#topic-modal-glossary iframe").attr("src"));
     });
 
 

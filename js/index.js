@@ -468,7 +468,7 @@ function addToRelatedVideos (new_topic) {
 
 function openTopicModal (topic_id) {
     $("#topic-modal").modal("show");
-    $("#topic-modal-glossary").modal("show");
+    // $("#topic-modal-glossary").modal("show");
     // $(".modal").modal("show");
     $('.modal-keywords-items').empty();
     $('.modal-backdrop').appendTo('#map-container');
@@ -521,10 +521,10 @@ $('#topic-modal').on('shown.bs.modal', function() {
 });
 
 
-$("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
-    alert('The modal is completely hidden now!');
-    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-});
+// $("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
+//     alert('The modal is completely hidden now!');
+//     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+// });
 
 // $(document).on('hidden.bs.modal', '#topic-modal iframe', function(){
 //     alert('The modal is completely hidden now!');

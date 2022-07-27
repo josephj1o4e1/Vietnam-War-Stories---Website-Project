@@ -129,10 +129,10 @@ $(document).ready(function () {
     });
 
 
-    // $('.modal').on('hidden.bs.modal', function() {
-    //     alert('The modal is completely hidden now!');
-    //     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-    // });
+    $("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
+        alert('The modal is completely hidden now!');
+        // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+    });
 
 
     if(!overlay_flag) {
@@ -520,10 +520,10 @@ $('#topic-modal').on('shown.bs.modal', function() {
 });
 
 
-$("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
-    alert('The modal is completely hidden now!');
-    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-});
+// $("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
+//     alert('The modal is completely hidden now!');
+//     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+// });
 
 // $(document).on('hidden.bs.modal', '#topic-modal iframe', function(){
 //     alert('The modal is completely hidden now!');

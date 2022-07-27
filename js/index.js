@@ -467,7 +467,8 @@ function addToRelatedVideos (new_topic) {
 }   
 
 function openTopicModal (topic_id) {
-    $("#topic-modal").modal("show");
+    // $("#topic-modal").modal("show");
+    $(".modal").modal("show");
     $('.modal-keywords-items').empty();
     $('.modal-backdrop').appendTo('#map-container');
     var video_id = topics[topic_id].youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
@@ -519,10 +520,10 @@ $('#topic-modal').on('shown.bs.modal', function() {
 });
 
 
-// $("#topic-modal .embed-responsive iframe").on('hidden.bs.modal', function() {
-//     alert('The modal is completely hidden now!');
-//     // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
-// });
+$("#topic-modal-glossary iframe").on('hidden.bs.modal', function() {
+    alert('The modal is completely hidden now!');
+    // $(".modal-topic-video-frame iframe").attr("src", $(".modal-topic-video-frame iframe").attr("src"));
+});
 
 // $(document).on('hidden.bs.modal', '#topic-modal iframe', function(){
 //     alert('The modal is completely hidden now!');

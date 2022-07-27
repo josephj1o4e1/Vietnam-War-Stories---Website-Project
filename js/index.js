@@ -128,9 +128,13 @@ $(document).ready(function () {
         }
     });
 
+    $("#topic-modal").on('hidden.bs.modal', function() {
+        // alert('The modal is completely hidden now!');
+        $("#topic-modal iframe").attr("src", $("#topic-modal iframe").attr("src"));
+    });
 
     $("#topic-modal-glossary").on('hidden.bs.modal', function() {
-        alert('The modal is completely hidden now!');
+        // alert('The modal-glossary is completely hidden now!');
         $("#topic-modal-glossary iframe").attr("src", $("#topic-modal-glossary iframe").attr("src"));
     });
 
@@ -467,9 +471,13 @@ function addToRelatedVideos (new_topic) {
 }   
 
 function openTopicModal (topic_id) {
-    // $("#topic-modal").modal("show");
-    $("#topic-modal-glossary").modal("show");
-    // $(".modal").modal("show");
+    if (current_page=="index.html") {
+        $("#topic-modal").modal("show");
+    }
+    else if (current_page=="glossary.html") {
+        $("#topic-modal-glossary").modal("show");
+    }
+
     $('.modal-keywords-items').empty();
     $('.modal-backdrop').appendTo('#map-container');
     var video_id = topics[topic_id].youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];

@@ -467,8 +467,8 @@ function addToRelatedVideos (new_topic) {
 }   
 
 function openTopicModal (topic_id) {
-    $("#topic-modal").modal("show");
-    // $("#topic-modal-glossary").modal("show");
+    // $("#topic-modal").modal("show");
+    $("#topic-modal-glossary").modal("show");
     // $(".modal").modal("show");
     $('.modal-keywords-items').empty();
     $('.modal-backdrop').appendTo('#map-container');

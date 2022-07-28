@@ -623,7 +623,8 @@ function searchByFilters () {
     } else { console.log ("Error in searchByFilters() function!"); }
     
     clearSidebar();
-    clearRelatedVideos();
+    // clearRelatedVideos();
+    clearGlossary();
     if (found_topics.length != 0) {
         found_topics.forEach (function (element) { 
             if (current_page=="index.html") {

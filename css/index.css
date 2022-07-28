@@ -168,11 +168,12 @@ body {
     border-right: 1px solid #77777A;
 }
 
-.search-container {
+#search-container-index, #search-container-glossary, .search-container {
     padding: 15px 10px 5px 10px;
     border-bottom: 1.5px solid #77777A;
 
 }
+
 #search-bar, #search-filter-group .btn, #playlist-button, .sidebar-panel {
     border-radius: 0;
 }

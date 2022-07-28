@@ -638,6 +638,7 @@ function searchByFilters () {
             $('#simpleList').append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
         }
         else if (current_page=="glossary.html") {
+            clearGlossary();
             $('#related_videos').append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
         }
     }

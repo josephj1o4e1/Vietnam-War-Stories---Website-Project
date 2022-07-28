@@ -249,7 +249,7 @@ function glossaryTerms(firstChar){
             $("#glossary-entries"+firstChar).append(glossary_list);
         } 
     }
-    getFirstDef();
+    // getFirstDef();
 }
 
 
@@ -550,10 +550,6 @@ function addToSearch (search_item) {
 
 function clearSidebar () {
     $('#simpleList').empty();
-}
-
-function clearRelatedVideos () {
-    $('#related_videos').empty();
 }
 
 function filterByRegion (region) {

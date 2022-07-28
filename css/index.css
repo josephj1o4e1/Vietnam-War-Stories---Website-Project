@@ -174,7 +174,7 @@ body {
 
 } */
 
-#search-container {
+.searchContainer {
     padding: 15px 10px 5px 10px;
     border-bottom: 1.5px solid #77777A;
 

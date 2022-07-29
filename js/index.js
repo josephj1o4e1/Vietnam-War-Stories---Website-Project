@@ -576,12 +576,13 @@ function searchByFilters () {
     search_request = search_request.toLowerCase();
     found_topics = [];
     
-    topics.forEach(function (element) {
-        console.log (element);
-        console.log("hello!");
-    })
+    // topics.forEach(function (element) {
+    //     console.log (element);
+    //     console.log("hello!");
+    // })
     
     if (search_request == '') {
+        console.log(' search_request == \'\' ')
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
             topics.forEach(function (element) { found_topics.push(element)});
         } else {

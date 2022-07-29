@@ -607,8 +607,8 @@ function searchByFilters () {
                 }
             });
         } else {
-            console.log(jQuery.isEmptyObject(regions_filters))
             console.log(jQuery.isEmptyObject(affiliations_filters))
+            console.log(jQuery.isEmptyObject(regions_filters))
             console.log(jQuery.isEmptyObject(years_filters))
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request) || element.contributor.toLowerCase().includes(search_request) || contributors[element.contributor].affiliation.toLowerCase().includes(search_request) || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request) || element.topic_abstract.toLowerCase().includes(search_request) || element.region.toLowerCase().includes(search_request)) {

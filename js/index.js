@@ -582,14 +582,9 @@ function searchByFilters () {
     // })
     
     if (search_request == '') {
-        console.log(' search_request == \'\' ')
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
             topics.forEach(function (element) { found_topics.push(element)});
         } else {
-            console.log('else!!')
-            console.log(jQuery.isEmptyObject(regions_filters));
-            console.log(jQuery.isEmptyObject(affiliations_filters));
-            console.log(jQuery.isEmptyObject(regions_filters));
             topics.forEach(function (element) {                
                 if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
                         && (affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
@@ -599,7 +594,9 @@ function searchByFilters () {
             });
         }
     } else if (search_request != '') {
+        console.log(' search_request != \'\' ')
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) {
+            console.log('only search filter')
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request)
                         || element.contributor.toLowerCase().includes(search_request) 
@@ -615,6 +612,7 @@ function searchByFilters () {
                     if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
                             && (affiliations_filters.includes(element.affiliation) || jQuery.isEmptyObject(affiliation_filters))
                             && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(timeline_filters))) {
+                        console.log('search filter + advanced filter')
                         found_topics.push (element);
                     }
                 }

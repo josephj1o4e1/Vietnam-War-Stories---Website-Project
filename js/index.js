@@ -127,7 +127,7 @@ $(document).ready(function () {
             searchByFilters();
         }
     });
-
+    
     $("#topic-modal").on('hidden.bs.modal', function() {
         // alert('The modal is completely hidden now!');
         $("#topic-modal iframe").attr("src", $("#topic-modal iframe").attr("src"));
@@ -594,9 +594,7 @@ function searchByFilters () {
             });
         }
     } else if (search_request != '') {
-        console.log(' search_request != \'\' ')
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) {
-            console.log('only search filter')
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request)
                         || element.contributor.toLowerCase().includes(search_request) 
@@ -607,9 +605,6 @@ function searchByFilters () {
                 }
             });
         } else {
-            console.log(jQuery.isEmptyObject(affiliations_filters))
-            console.log(jQuery.isEmptyObject(regions_filters))
-            console.log(jQuery.isEmptyObject(years_filters))
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request) || element.contributor.toLowerCase().includes(search_request) || contributors[element.contributor].affiliation.toLowerCase().includes(search_request) || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request) || element.topic_abstract.toLowerCase().includes(search_request) || element.region.toLowerCase().includes(search_request)) {
                     if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
@@ -909,6 +904,10 @@ function init() {
         }
 
         document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
+        
+        $('#affiliations-filter').multiselect ('deselectAll', false);
+        $('#regions-filter').multiselect ('deselectAll', false);
+        $('#years-filter').multiselect ('deselectAll', false);
     }
 
 }

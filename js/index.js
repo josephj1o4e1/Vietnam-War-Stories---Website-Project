@@ -906,8 +906,11 @@ function init() {
         document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
         
         $('#affiliations-filter').multiselect ('deselectAll', false);
+        $('#affiliations-filter').multiselect('updateButtonText');
         $('#regions-filter').multiselect ('deselectAll', false);
+        $('#regions-filter').multiselect('updateButtonText');
         $('#years-filter').multiselect ('deselectAll', false);
+        $('#years-filter').multiselect('updateButtonText');
     }
 
 }

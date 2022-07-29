@@ -586,8 +586,11 @@ function searchByFilters () {
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
             topics.forEach(function (element) { found_topics.push(element)});
         } else {
-            topics.forEach(function (element) {
-                console.log(regions_filters);
+            console.log('else!!')
+            console.log(jQuery.isEmptyObject(regions_filters));
+            console.log(jQuery.isEmptyObject(affiliations_filters));
+            console.log(jQuery.isEmptyObject(regions_filters));
+            topics.forEach(function (element) {                
                 if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
                         && (affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
                         && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(years_filters)) && current_page!='glossary.html') {

@@ -584,7 +584,7 @@ function searchByFilters () {
     if (search_request == '') {
         console.log(' search_request == \'\' ')
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
-            topics.forEach(function (element) { found_topics.push(element)});
+            topics.forEach(function (element) { found_topics.push(element); console.log(element); });
         } else {
             topics.forEach(function (element) {
                 if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 

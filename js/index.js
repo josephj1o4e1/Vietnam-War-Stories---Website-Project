@@ -587,7 +587,7 @@ function searchByFilters () {
             topics.forEach(function (element) { found_topics.push(element)});
         } else {
             topics.forEach(function (element) {
-                console.log(element);
+                console.log(regions_filters.values);
                 if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
                         && (affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
                         && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(years_filters)) && current_page!='glossary.html') {

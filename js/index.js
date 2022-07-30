@@ -604,7 +604,7 @@ function applyAdvancedFilter () {
             else {
                 clearGlossary();
             }
-            
+
             topics_curr_noAF.forEach(function (element) {                
                 if ((affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
                         && (regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters))
@@ -632,6 +632,17 @@ function applyAdvancedFilter () {
         }
         else {
             advancedFilter_applied = false;
+            topics_curr_noAF.forEach(function (element) {                
+                found_topics.push (element);
+            });
+            found_topics.forEach (function (element) { 
+                if (current_page=="index.html") {
+                    addToSidebar (element);
+                }
+                else if (current_page=="glossary.html") {
+                    addToRelatedVideos (element);
+                }
+            });
         }
 
     }

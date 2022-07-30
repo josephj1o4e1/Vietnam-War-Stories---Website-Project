@@ -594,6 +594,12 @@ function applyAdvancedFilter () {
     years_filters = $('#years-filter').val();
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
+        if ( ! ($('#glossary-defs-list').is(':empty')) ) {
+            $("#related_videos").empty(); // now is getGlossaryDef() -> applyAdvancedFilter()
+        }        
+        else {
+            clearGlossary();
+        }
         if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
             advancedFilter_applied = true;
             topics_curr_noAF.forEach(function (element) {                
@@ -614,8 +620,7 @@ function applyAdvancedFilter () {
                 });
             } else {
                 if (topics_curr_noAF.length != 0) {
-                    clearGlossary();
-                    $('#related_videos').append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
+                    $('#related_videos').empty().append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
                 }
                 else {
                     clearGlossary();

@@ -52,19 +52,21 @@ $(document).ready(function () {
         },
         
         onChange: function () {
-            affiliations_filters = $('#affiliations-filter').val();
-            // console.log("AFFILIATIONS: " + affiliations_filters);
-            searchByFilters();
+            // affiliations_filters = $('#affiliations-filter').val();
+            // // console.log("AFFILIATIONS: " + affiliations_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onSelectAll: function () {
-            affiliations_filters = $('#affiliations-filter').val();
-            // console.log("AFFILIATIONS: " + affiliations_filters);
-            searchByFilters();
+            // affiliations_filters = $('#affiliations-filter').val();
+            // // console.log("AFFILIATIONS: " + affiliations_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onDeselectAll: function () {
             affiliations_filters = [];
             // console.log("AFFILIATIONS: " + affiliations_filters);
-            searchByFilters();
+            applyAdvancedFilter();
         }
     });
     
@@ -82,19 +84,22 @@ $(document).ready(function () {
         },
         
         onChange: function () {
-            regions_filters = $('#regions-filter').val();
-            // console.log("REGIONS: " + regions_filters);
-            searchByFilters();
+            // regions_filters = $('#regions-filter').val();
+            // // console.log("REGIONS: " + regions_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onSelectAll: function () {
-            regions_filters = $('#regions-filter').val();
-            // console.log("REGIONS: " + regions_filters);
-            searchByFilters();
+            // regions_filters = $('#regions-filter').val();
+            // // console.log("REGIONS: " + regions_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onDeselectAll: function () {
-            regions_filters = [];
-            // console.log("REGIONS: " + regions_filters);
-            searchByFilters();
+            // regions_filters = [];
+            // // console.log("REGIONS: " + regions_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         }
     });
 
@@ -112,19 +117,22 @@ $(document).ready(function () {
         },
         
         onChange: function () {
-            years_filters = $('#years-filter').val();
-            // console.log("YEARS: " + years_filters);
-            searchByFilters();
+            // years_filters = $('#years-filter').val();
+            // // console.log("YEARS: " + years_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onSelectAll: function () {
-            years_filters = $('#years-filter').val();
-            // console.log("YEARS: " + years_filters);
-            searchByFilters();
+            // years_filters = $('#years-filter').val();
+            // // console.log("YEARS: " + years_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         },
         onDeselectAll: function () {
-            years_filters = $('#years-filter').val();
-            // console.log("YEARS: " + years_filters);
-            searchByFilters();
+            // years_filters = $('#years-filter').val();
+            // // console.log("YEARS: " + years_filters);
+            // searchByFilters();
+            applyAdvancedFilter();
         }
     });
     
@@ -198,6 +206,8 @@ class Keyword {
 }
 
 var topics = [];
+var topics_curr_noAF = []; // current topic list with no Advanced Filter
+var advancedFilter_applied = False; //flag for advancedFilter
 var topicTotal = 0;
 var topics_loaded = false;
 var contributors = {};
@@ -274,6 +284,7 @@ function getGlossaryDef(glossary_id){
     lastClickedDef = glossary_id;
     $("#glossary-links").empty();
     $("#related_videos").empty();
+    topics_curr_noAF = [];
     var related_topic_found = false;
     var glossary_list = Object.values(keywords);
     var glossary_entry = glossary_list[glossary_id].name;
@@ -285,18 +296,23 @@ function getGlossaryDef(glossary_id){
             if(new_topic_keywords == glossary_entry){
                 //console.log(new_topic_keywords + " found in topic " + new_topic_id);
                 var found_topic = new_topic_id;
+                topics_curr_noAF.append(topics[found_topic])
                 addToRelatedVideos(topics[found_topic]);
                 related_topic_found = true;
                 refreshSavePlaylist();
             }   
         }
     }
+    if (advancedFilter_applied==True) {
+        applyAdvancedFilter();
+    }
+    
     $("#glossary-defs-list").empty().append("<h4>" + glossary_entry + "</h4>");
     $("#glossary-defs").empty().append(glossary_def); 
     
     if(related_topic_found == true)  {
          $("#glossary-links").empty().append("Related video topics: ");
-    } 
+    }
 } 
 
 
@@ -570,6 +586,58 @@ function filterByRegion (region) {
     }
 }
 
+function applyAdvancedFilter () {
+    closeOverlay();
+    found_topics = [];
+    affiliations_filters = $('#affiliations-filter').val();
+    regions_filters = $('#regions-filter').val();
+    years_filters = $('#years-filter').val();
+    /* filter out #related_videos for getGlossaryDef and searchByFilter */
+    if (current_page=='glossary.html') {
+        if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
+            advancedFilter_applied = True;
+            topics_curr_noAF.forEach(function (element) {                
+                if ((affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
+                        && (regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters))
+                        && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(years_filters))) {
+                    found_topics.push (element);
+                }
+            });
+            if (found_topics.length != 0) {
+                found_topics.forEach (function (element) { 
+                    if (current_page=="index.html") {
+                        addToSidebar (element);
+                    }
+                    else if (current_page=="glossary.html") {
+                        addToRelatedVideos (element);
+                    }
+                });
+            } else {
+                if (topics_curr_noAF.length != 0) {
+                    clearGlossary();
+                    $('#related_videos').append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
+                }
+                else {
+                    clearGlossary();
+                }
+            }
+        }
+        else {
+            advancedFilter_applied = False;
+        }
+
+    }
+    /* filter out #simple_list for searchByFilter */
+    else if (current_page=='index.html') {
+        
+    }
+    
+
+     
+    // return false;
+}
+
+
 function searchByFilters () {
     closeOverlay();
     var search_request = $('#search-bar').val();
@@ -608,7 +676,7 @@ function searchByFilters () {
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request) || element.contributor.toLowerCase().includes(search_request) || contributors[element.contributor].affiliation.toLowerCase().includes(search_request) || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request) || element.topic_abstract.toLowerCase().includes(search_request) || element.region.toLowerCase().includes(search_request)) {
                     if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
-                            && (affiliations_filters.includes(element.affiliation) || jQuery.isEmptyObject(affiliation_filters))
+                            && (affiliations_filters.includes(element.affiliation) || jQuery.isEmptyObject(affiliations_filters))
                             && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(timeline_filters))) {
                         console.log('search filter + advanced filter')
                         found_topics.push (element);
@@ -903,9 +971,7 @@ function init() {
             html_dropdown_main += "</div>";
         }
 
-        document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;
-        
-        
+        document.getElementsByClassName('dropdown_main')[0].innerHTML = html_dropdown_main;        
     }
 
 }

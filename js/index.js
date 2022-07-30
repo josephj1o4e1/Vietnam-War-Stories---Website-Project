@@ -596,14 +596,15 @@ function applyAdvancedFilter () {
     years_filters = $('#years-filter').val();
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
+        if ( curr_filter==1 ) {
+            $("#related_videos").empty(); // now is getGlossaryDef() -> applyAdvancedFilter()
+        }        
+        else {
+            clearGlossary();
+        }
+        
         if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
             advancedFilter_applied = true;
-            if ( curr_filter==1 ) {
-                $("#related_videos").empty(); // now is getGlossaryDef() -> applyAdvancedFilter()
-            }        
-            else {
-                clearGlossary();
-            }
 
             topics_curr_noAF.forEach(function (element) {                
                 if ((affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))

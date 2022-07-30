@@ -39,7 +39,7 @@ $(document).ready(function () {
    } 
     
     $('#affiliations-filter').multiselect({
-        includeSelectAllOption: true,
+        // includeSelectAllOption: true,
         buttonText: function(options, select) {
             var total_options = $('#affiliations-filter').children('option').length;
             if (options.length === 0) {
@@ -57,21 +57,21 @@ $(document).ready(function () {
             // searchByFilters();
             applyAdvancedFilter();
         },
-        onSelectAll: function () {
-            // affiliations_filters = $('#affiliations-filter').val();
-            // // console.log("AFFILIATIONS: " + affiliations_filters);
-            // searchByFilters();
-            applyAdvancedFilter();
-        },
-        onDeselectAll: function () {
-            // affiliations_filters = [];
-            // console.log("AFFILIATIONS: " + affiliations_filters);
-            applyAdvancedFilter();
-        }
+        // onSelectAll: function () {
+        //     // affiliations_filters = $('#affiliations-filter').val();
+        //     // // console.log("AFFILIATIONS: " + affiliations_filters);
+        //     // searchByFilters();
+        //     applyAdvancedFilter();
+        // },
+        // onDeselectAll: function () {
+        //     // affiliations_filters = [];
+        //     // console.log("AFFILIATIONS: " + affiliations_filters);
+        //     applyAdvancedFilter();
+        // }
     });
     
     $('#regions-filter').multiselect({
-        includeSelectAllOption: true,
+        // includeSelectAllOption: true,
         buttonText: function(options, select) {
             var total_options = $('#regions-filter').children('option').length;
             if (options.length === 0) {
@@ -89,22 +89,22 @@ $(document).ready(function () {
             // searchByFilters();
             applyAdvancedFilter();
         },
-        onSelectAll: function () {
-            // regions_filters = $('#regions-filter').val();
-            // // console.log("REGIONS: " + regions_filters);
-            // searchByFilters();
-            applyAdvancedFilter();
-        },
-        onDeselectAll: function () {
-            // regions_filters = [];
-            // // console.log("REGIONS: " + regions_filters);
-            // searchByFilters();
-            applyAdvancedFilter();
-        }
+        // onSelectAll: function () {
+        //     // regions_filters = $('#regions-filter').val();
+        //     // // console.log("REGIONS: " + regions_filters);
+        //     // searchByFilters();
+        //     applyAdvancedFilter();
+        // },
+        // onDeselectAll: function () {
+        //     // regions_filters = [];
+        //     // // console.log("REGIONS: " + regions_filters);
+        //     // searchByFilters();
+        //     applyAdvancedFilter();
+        // }
     });
 
     $('#years-filter').multiselect({
-        includeSelectAllOption: true,             
+        // includeSelectAllOption: true,      
         buttonText: function(options, select) {
             var total_options = $('#years-filter').children('option').length;
             if (options.length === 0) {
@@ -122,18 +122,18 @@ $(document).ready(function () {
             // searchByFilters();
             applyAdvancedFilter();
         },
-        onSelectAll: function () {
-            // years_filters = $('#years-filter').val();
-            // // console.log("YEARS: " + years_filters);
-            // searchByFilters();
-            applyAdvancedFilter();
-        },
-        onDeselectAll: function () {
-            // years_filters = $('#years-filter').val();
-            // // console.log("YEARS: " + years_filters);
-            // searchByFilters();
-            applyAdvancedFilter();
-        }
+        // onSelectAll: function () {
+        //     // years_filters = $('#years-filter').val();
+        //     // // console.log("YEARS: " + years_filters);
+        //     // searchByFilters();
+        //     applyAdvancedFilter();
+        // },
+        // onDeselectAll: function () {
+        //     // years_filters = $('#years-filter').val();
+        //     // // console.log("YEARS: " + years_filters);
+        //     // searchByFilters();
+        //     applyAdvancedFilter();
+        // }
     });
     
     $("#topic-modal").on('hidden.bs.modal', function() {
@@ -602,7 +602,7 @@ function applyAdvancedFilter () {
         else {
             clearGlossary();
         }
-        
+
         if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
             advancedFilter_applied = true;
 

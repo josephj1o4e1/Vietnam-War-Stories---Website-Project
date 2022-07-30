@@ -597,10 +597,10 @@ function applyAdvancedFilter () {
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
         if ( curr_filter==1 ) {
-            $("#related_videos").empty(); // now is getGlossaryDef() -> applyAdvancedFilter()
+            $("#related_videos").empty(); // getGlossaryDef() -> applyAdvancedFilter()
         }        
         else {
-            clearGlossary();
+            clearGlossary(); // searchByFilter() or no filter -> applyAdvancedFilter()
         }
 
         if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {

@@ -207,7 +207,7 @@ class Keyword {
 
 var topics = [];
 var topics_curr_noAF = []; // current topic list with no Advanced Filter
-var advancedFilter_applied = False; //flag for advancedFilter
+var advancedFilter_applied = false; //flag for advancedFilter
 var topicTotal = 0;
 var topics_loaded = false;
 var contributors = {};
@@ -303,7 +303,7 @@ function getGlossaryDef(glossary_id){
             }   
         }
     }
-    if (advancedFilter_applied==True) {
+    if (advancedFilter_applied==true) {
         applyAdvancedFilter();
     }
     
@@ -595,7 +595,7 @@ function applyAdvancedFilter () {
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
         if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
-            advancedFilter_applied = True;
+            advancedFilter_applied = true;
             topics_curr_noAF.forEach(function (element) {                
                 if ((affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
                         && (regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters))
@@ -623,7 +623,7 @@ function applyAdvancedFilter () {
             }
         }
         else {
-            advancedFilter_applied = False;
+            advancedFilter_applied = false;
         }
 
     }

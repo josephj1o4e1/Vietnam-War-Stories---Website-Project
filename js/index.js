@@ -663,6 +663,7 @@ function searchByFilters () {
     var search_request = $('#search-bar').val();
     search_request = search_request.toLowerCase();
     found_topics = [];
+    topics_curr_noAF = [];
     
     // topics.forEach(function (element) {
     //     console.log (element);
@@ -671,41 +672,22 @@ function searchByFilters () {
     
     if (search_request == '') {
         curr_filter = 0;
-        if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
-            topics.forEach(function (element) { found_topics.push(element)});
-        } else {
-            topics.forEach(function (element) {                
-                if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
-                        && (affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
-                        && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(years_filters)) && current_page!='glossary.html') {
-                    found_topics.push (element);
-                }
-            });
-        }
     } else if (search_request != '') {
         curr_filter = 2;
-        if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) {
-            topics.forEach(function (element) {
-                if (element.topic.toLowerCase().includes(search_request)
-                        || element.contributor.toLowerCase().includes(search_request) 
-                        || contributors[element.contributor].affiliation.toLowerCase().includes(search_request) 
-                        || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request) 
-                        || element.topic_abstract.toLowerCase().includes(search_request)) {
-                    found_topics.push (element);
-                }
-            });
-        } else {
-            topics.forEach(function (element) {
-                if (element.topic.toLowerCase().includes(search_request) || element.contributor.toLowerCase().includes(search_request) || contributors[element.contributor].affiliation.toLowerCase().includes(search_request) || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request) || element.topic_abstract.toLowerCase().includes(search_request) || element.region.toLowerCase().includes(search_request)) {
-                    if ((regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters)) 
-                            && (affiliations_filters.includes(element.affiliation) || jQuery.isEmptyObject(affiliations_filters))
-                            && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(timeline_filters))) {
-                        console.log('search filter + advanced filter')
-                        found_topics.push (element);
-                    }
-                }
-            });
-        }
+        topics.forEach(function (element) {
+            if (element.topic.toLowerCase().includes(search_request)
+            || element.contributor.toLowerCase().includes(search_request)
+            || contributors[element.contributor].affiliation.toLowerCase().includes(search_request)
+            || contributors[element.contributor].subaffiliation.toLowerCase().includes(search_request)
+            || element.topic_abstract.toLowerCase().includes(search_request)
+            || element.region.toLowerCase().includes(search_request)) {
+                found_topics.push (element)
+                topics_curr_noAF.push(element)
+            }
+        });
+        
+
+
     } else { console.log ("Error in searchByFilters() function!"); }
     
     clearSidebar();
@@ -717,6 +699,9 @@ function searchByFilters () {
             }
             else if (current_page=="glossary.html") {
                 addToRelatedVideos (element);
+                if (advancedFilter_applied==true) {
+                    applyAdvancedFilter();
+                }
             }
         });
     } else {

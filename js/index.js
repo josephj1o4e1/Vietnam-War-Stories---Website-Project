@@ -296,7 +296,7 @@ function getGlossaryDef(glossary_id){
             if(new_topic_keywords == glossary_entry){
                 //console.log(new_topic_keywords + " found in topic " + new_topic_id);
                 var found_topic = new_topic_id;
-                topics_curr_noAF.append(topics[found_topic])
+                topics_curr_noAF.push(topics[found_topic])
                 addToRelatedVideos(topics[found_topic]);
                 related_topic_found = true;
                 refreshSavePlaylist();

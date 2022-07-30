@@ -64,7 +64,7 @@ $(document).ready(function () {
             applyAdvancedFilter();
         },
         onDeselectAll: function () {
-            affiliations_filters = [];
+            // affiliations_filters = [];
             // console.log("AFFILIATIONS: " + affiliations_filters);
             applyAdvancedFilter();
         }

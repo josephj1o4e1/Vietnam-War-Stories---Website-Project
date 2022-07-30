@@ -208,6 +208,7 @@ class Keyword {
 var topics = [];
 var topics_curr_noAF = []; // current topic list with no Advanced Filter
 var advancedFilter_applied = false; //flag for advancedFilter
+var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 var topicTotal = 0;
 var topics_loaded = false;
 var contributors = {};
@@ -281,6 +282,7 @@ function getFirstDef(){
 
 //Display definition on click
 function getGlossaryDef(glossary_id){
+    curr_filter = 1; 
     lastClickedDef = glossary_id;
     $("#glossary-links").empty();
     $("#related_videos").empty();
@@ -594,7 +596,7 @@ function applyAdvancedFilter () {
     years_filters = $('#years-filter').val();
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
-        if ( ! ($('#glossary-defs-list').is(':empty')) ) {
+        if ( curr_filter==1 ) {
             $("#related_videos").empty(); // now is getGlossaryDef() -> applyAdvancedFilter()
         }        
         else {
@@ -655,6 +657,7 @@ function searchByFilters () {
     // })
     
     if (search_request == '') {
+        curr_filter = 0;
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters) && current_page!='glossary.html') {
             topics.forEach(function (element) { found_topics.push(element)});
         } else {
@@ -667,6 +670,7 @@ function searchByFilters () {
             });
         }
     } else if (search_request != '') {
+        curr_filter = 2;
         if (jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) {
             topics.forEach(function (element) {
                 if (element.topic.toLowerCase().includes(search_request)

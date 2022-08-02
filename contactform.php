@@ -7,11 +7,15 @@ error_reporting(E_ALL);
 
 $msg = '';
 $name = $email = $message = "";
-print("Hello World");
+
 if (!empty($_POST['name']) ) {
     $name = test_input($_POST['name']);
     $email = test_input($_POST["email"]);
     $message = test_input($_POST['message']);
+    
+    echo "name" + $name;
+    echo "email" + $email;
+    echo "message" + $message;
 
     require 'contact/vendor/autoload.php';
 

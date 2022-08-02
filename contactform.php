@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 $msg = '';
 $name = $email = $message = "";
-
+print("Hello World");
 if (!empty($_POST['name']) ) {
     $name = test_input($_POST['name']);
     $email = test_input($_POST["email"]);

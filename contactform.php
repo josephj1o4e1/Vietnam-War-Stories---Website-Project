@@ -2,6 +2,8 @@
 /**
  * New version as of 8/4/18
  */
+echo 'PHP version: ' . phpversion();
+
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 

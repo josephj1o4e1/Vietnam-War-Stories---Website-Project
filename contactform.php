@@ -76,54 +76,58 @@ function test_input($data) {
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="css/bootstrap/bootstrap-multiselect.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cardo" rel="stylesheet">
-<link href="css/index.css" rel="stylesheet">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="css/bootstrap/bootstrap-multiselect.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cardo" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
 
-<title>Contact Us</title>
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/bootstrap/bootstrap-multiselect.js"></script>
 
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-}
+        <title>Contact Us</title>
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
 
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+            input[type=text], select, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
 
-input[type=submit]:hover {
-    background-color: #45a049;
-}
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-li { font-family: 'Raleway', sans-serif;
-}
-</style>
-</head>
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
 
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
+            .container {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+            li { font-family: 'Raleway', sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -155,10 +159,11 @@ li { font-family: 'Raleway', sans-serif;
             </div> <!-- /.container-fluid -->
         </nav> <!-- /.navbar -->
 
-<div class="container">
-<?php
-echo $msg;
-?>
-<p>Back to <a href="https://vietwar.sitehost-test.iu.edu\">Vietnam War Stories</a></p>
-</div>
-</body>
+        <div class="container">
+            <?php
+                echo $msg;
+            ?>
+            <p>Back to <a href="https://vietwar.sitehost-test.iu.edu\">Vietnam War Stories</a></p>
+        </div>
+    </body>
+</html>

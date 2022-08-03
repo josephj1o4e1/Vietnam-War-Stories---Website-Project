@@ -18,11 +18,10 @@ if (!empty($_POST['name']) ) {
     require 'contact/vendor/autoload.php';
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->setFrom('contact@vietwar.sitehost-test.iu.edu', 'Vietnam War Stories');
+    $mail->setFrom('contact@vietwar.sitehost-test.iu.edu', 'Vietnam War Stories - test server');
     //$mail->addAddress('ejblom@iu.edu', 'John Doe');
-    // $mail->addAddress('osgoodr@indiana.edu', 'Professor Ron Osgood');
-    $mail->addAddress('shchua@iu.edu', 'CCJOSEPH');
-    $mail->Subject = 'A message from Vietnam War Stories';
+    $mail->addAddress('osgoodr@indiana.edu', 'Professor Ron Osgood');
+    $mail->Subject = 'A message from Vietnam War Stories - test server';
 
     if (!empty($_FILES['userfile']['name']) ) {
         // create the body

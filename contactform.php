@@ -18,10 +18,10 @@ if (!empty($_POST['name']) ) {
     require 'contact/vendor/autoload.php';
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->setFrom('contact@vietnamwarstories.org', 'Vietnam War Stories');
+    $mail->setFrom('contact@vietwar.sitehost-test.iu.edu', 'Vietnam War Stories');
     //$mail->addAddress('ejblom@iu.edu', 'John Doe');
-    // $mail->addAddress('osgoodr@indiana.edu', 'John Doe');
-    $mail->addAddress('shchua@iu.edu', 'John Doe');
+    // $mail->addAddress('osgoodr@indiana.edu', 'Professor Ron Osgood');
+    $mail->addAddress('shchua@iu.edu', 'CCJOSEPH');
     $mail->Subject = 'A message from Vietnam War Stories';
 
     if (!empty($_FILES['userfile']['name']) ) {
@@ -148,6 +148,6 @@ li { font-family: 'Raleway', sans-serif;
 <?php
 echo $msg;
 ?>
-<p>Back to <a href="http://vietnamwarstories.org\">Vietnam War Stories</a></p>
+<p>Back to <a href="https://vietwar.sitehost-test.iu.edu\">Vietnam War Stories</a></p>
 </div>
 </body>

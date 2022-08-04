@@ -596,7 +596,7 @@ function applyAdvancedFilter () {
     years_filters = $('#years-filter').val();
     /* filter out #related_videos for getGlossaryDef and searchByFilter */
     if (current_page=='glossary.html') {
-        if ( curr_filter==1 ) {
+        if ( curr_filter==1 ) { //filter is glossaryfilter
             $("#related_videos").empty(); // getGlossaryDef() -> applyAdvancedFilter()
         }        
         else {
@@ -615,12 +615,7 @@ function applyAdvancedFilter () {
             });
             if (found_topics.length != 0) {
                 found_topics.forEach (function (element) { 
-                    if (current_page=="index.html") {
-                        addToSidebar (element);
-                    }
-                    else if (current_page=="glossary.html") {
-                        addToRelatedVideos (element);
-                    }
+                    addToRelatedVideos (element);
                 });
             } else {
                 if (topics_curr_noAF.length != 0) {
@@ -637,19 +632,52 @@ function applyAdvancedFilter () {
                 found_topics.push (element);
             });
             found_topics.forEach (function (element) { 
-                if (current_page=="index.html") {
-                    addToSidebar (element);
-                }
-                else if (current_page=="glossary.html") {
-                    addToRelatedVideos (element);
-                }
+                addToRelatedVideos (element);
             });
         }
 
     }
     /* filter out #simple_list for searchByFilter */
-    else if (current_page=='index.html') {
-        
+    else if (current_page=='index.html') { //addToSidebar (element);
+        if ( curr_filter==0 ) { //no filter
+            $("#simpleList").empty(); // getGlossaryDef() -> applyAdvancedFilter()
+            topics_curr_noAF=[];
+            topics.forEach(function (element) {
+                topics_curr_noAF.push(element)
+            });
+        }
+        else { //searchByFilter()
+            $("#simpleList").empty();
+        }
+
+        if ( !(jQuery.isEmptyObject(regions_filters) && jQuery.isEmptyObject(affiliations_filters) && jQuery.isEmptyObject(years_filters)) ) {
+            advancedFilter_applied = true;
+
+            topics_curr_noAF.forEach(function (element) {                
+                if ((affiliations_filters.includes(contributors[element.contributor].affiliation) || jQuery.isEmptyObject(affiliations_filters))
+                        && (regions_filters.includes(element.region) || jQuery.isEmptyObject(regions_filters))
+                        && (years_filters.includes(element.time_period) || jQuery.isEmptyObject(years_filters))) {
+                    found_topics.push (element);
+                }
+            });
+            if (found_topics.length != 0) {
+                found_topics.forEach (function (element) { 
+                    addToSidebar (element);
+                });
+            } else {
+                $('#simpleList').empty().append('<p>There are no entries under these specific filters. If you have a story you\'d like to share for these filters, please <a target="_blank" href="http://vietnamwarstories.indiana.edu/contactform.html">contact us</a>!</p>');
+            }
+        }
+        else {
+            advancedFilter_applied = false;
+            topics_curr_noAF.forEach(function (element) {                
+                found_topics.push (element);
+            });
+            found_topics.forEach (function (element) { 
+                addToSidebar (element);
+            });
+        }
+
     }
     
 

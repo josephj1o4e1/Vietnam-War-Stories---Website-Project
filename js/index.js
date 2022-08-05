@@ -671,9 +671,6 @@ function applyAdvancedFilter () {
         else {
             advancedFilter_applied = false;
             topics_curr_noAF.forEach(function (element) {                
-                found_topics.push (element);
-            });
-            found_topics.forEach (function (element) { 
                 addToSidebar (element);
             });
         }
@@ -837,7 +834,14 @@ function togglePlaylist() {
                 toggleAlphabeticalList();
             } else {
             // searchByFilters();
-            refreshSavePlaylist();
+                topics_curr_noAF.forEach(function (element) {                
+                    addToSidebar (element);
+                });
+                if (advancedFilter_applied==true) {
+                    applyAdvancedFilter();
+                }
+                
+                refreshSavePlaylist();
             }
         } else {
             for (var i = 0; i < youtube_playlist.length; i++) {

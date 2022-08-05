@@ -638,7 +638,7 @@ function applyAdvancedFilter () {
 
     }
     /* filter out #simple_list for searchByFilter */
-    else if (current_page=='index.html') { //addToSidebar (element);
+    else { //current page == index page ... addToSidebar (element);
         if ( curr_filter==0 ) { //no filter
             $("#simpleList").empty(); // getGlossaryDef() -> applyAdvancedFilter()
             topics_curr_noAF=[];

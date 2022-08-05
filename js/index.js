@@ -807,16 +807,16 @@ function removeFromPlaylist(id){
 var is_playlist_active = false;
 function togglePlaylist() {
     var af = document.getElementById("search-filter-group"); // af as advanced filter
-    if (af.style.display === "none") {
-        af.style.display = "block";
-    } else {
-        af.style.display = "none";
-    }
     if (jQuery.isEmptyObject(youtube_playlist) && !is_playlist_active) {
         console.log()
         $("#playlist-button").popover("toggle");
         setTimeout(function(){ $("#playlist-button").popover("toggle"); }, 2000);
     } else {
+        if (af.style.display === "none") {
+            af.style.display = "block";
+        } else {
+            af.style.display = "none";
+        }
         clearSidebar();
         clearGlossary();
         if (is_playlist_active) {

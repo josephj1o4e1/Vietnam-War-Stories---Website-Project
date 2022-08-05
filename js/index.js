@@ -829,7 +829,7 @@ function togglePlaylist() {
                 });
                 if (advancedFilter_applied==true) {
                     applyAdvancedFilter();
-                }            
+                }
                 refreshSavePlaylist();
             }            
 

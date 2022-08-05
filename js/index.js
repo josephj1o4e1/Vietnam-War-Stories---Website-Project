@@ -29,9 +29,6 @@ function closeOverlay() {
     if(!$('#results-container').hasClass('no-overlay')) {
         $('#results-container').toggleClass('no-overlay');
     }
-    else if(!$('#glossary').hasClass('no-overlay')) {
-        $('#glossary').toggleClass('no-overlay');
-    }
 }
 
 $(document).ready(function () {
@@ -152,7 +149,6 @@ $(document).ready(function () {
 
     if(!overlay_flag) {
         $('#results-container').removeClass('no-overlay');
-        $('#glossary').removeClass('no-overlay');
     }
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
@@ -461,7 +457,7 @@ function addToRelatedVideos (new_topic) {
             </div>
 
             <div class="handle flex-center" onclick="event.stopPropagation()">
-                <i class="fas fa-grip-horizontal"> AAAA </i>
+                <i class="fas fa-grip-horizontal"></i>
             </div>
 
         </div>

@@ -398,7 +398,7 @@ function addToSidebar (new_topic) {
             </div>
                         
             <div class="thumbnail flex-center" data-video-id=${video_id}>
-            <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+                <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
             </div>
             <div class="details">
                 <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
@@ -451,7 +451,7 @@ function addToRelatedVideos (new_topic) {
     //                             '</div>';
 
     const new_sidebar_element = `
-    <div id=${new_topic.id} class="panel panel-default results-panel>
+    <div id=${new_topic.id} class="panel panel-default results-panel">
         <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">

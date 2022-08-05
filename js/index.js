@@ -461,7 +461,7 @@ function addToRelatedVideos (new_topic) {
             </div>
 
             <div class="handle flex-center" onclick="event.stopPropagation()">
-                <i class="fas fa-grip-horizontal"></i>
+                <i class="fas fa-grip-horizontal"> AAAA </i>
             </div>
 
         </div>

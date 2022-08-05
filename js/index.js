@@ -468,8 +468,8 @@ function addToRelatedVideos (new_topic) {
                 <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
             </div>
 
-            <div class="handle flex-center">
-                <i class="fa fa-bars"></i>
+            <div class="handle flex-center" onclick="event.stopPropagation()">
+                <i class="fas fa-grip-horizontal"></i>
             </div>
 
         </div>

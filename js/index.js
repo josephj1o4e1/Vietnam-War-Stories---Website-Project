@@ -812,16 +812,12 @@ function togglePlaylist() {
         $("#playlist-button").popover("toggle");
         setTimeout(function(){ $("#playlist-button").popover("toggle"); }, 2000);
     } else {
-        if (af.style.display === "none") {
-            af.style.display = "block";
-        } else {
-            af.style.display = "none";
-        }
         clearSidebar();
         clearGlossary();
         if (is_playlist_active) {
-           is_playlist_active = false;
-           $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+            af.style.display = "none"; 
+            is_playlist_active = false;
+            $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
             if (current_page == "glossary.html"){
                 // glossaryTerms();
                 getGlossaryDef(lastClickedDef);
@@ -838,6 +834,7 @@ function togglePlaylist() {
             }            
 
         } else {
+            af.style.display = "none"; 
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
                 if (current_page == "glossary.html") {

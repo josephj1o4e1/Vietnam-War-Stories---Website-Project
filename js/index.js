@@ -317,18 +317,6 @@ function getGlossaryDef(glossary_id){
     }
 } 
 
-
-function toggleAlphabeticalList() {
-	if (current_page == "glossary.html"){
-        var current_alphabetical_list = document.getElementById("alphabetical-listing");
-            if (current_alphabetical_list.style.display === "none") {
-                current_alphabetical_list.style.display = "block";
-            } else {
-                current_alphabetical_list.style.display = "none";
-              }
-	}
-}
-
 //Remove glossary content
 function clearGlossary(){
     var find_glossary_terms = Object.values(keywords);
@@ -468,8 +456,8 @@ function addToRelatedVideos (new_topic) {
                 <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
             </div>
 
-            <div class="handle flex-center">
-                <i class="fa fa-bars"></i>
+            <div class="handle flex-center" onclick="event.stopPropagation()">
+                <i class="fas fa-grip-horizontal"></i>
             </div>
 
         </div>
@@ -836,8 +824,7 @@ function togglePlaylist() {
             if (current_page == "glossary.html"){
                 // glossaryTerms();
                 getGlossaryDef(lastClickedDef);
-                glossaryTerms(lastClickedTermList);
-                toggleAlphabeticalList();
+                glossaryTerms(lastClickedTermList);                
             } else {
             // searchByFilters();
                 topics_curr_noAF.forEach(function (element) {                
@@ -845,18 +832,22 @@ function togglePlaylist() {
                 });
                 if (advancedFilter_applied==true) {
                     applyAdvancedFilter();
-                }
-                
+                }            
                 refreshSavePlaylist();
-            }
+            }            
+
         } else {
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
-                addToSidebar(topics[j]);
+                if (current_page == "glossary.html") {
+                    addToRelatedVideos(topics[j]);
+                }
+                else {
+                    addToSidebar(topics[j]);
+                }
             }
             is_playlist_active = true;
             $("#playlist-button").html('Back');
-             toggleAlphabeticalList();
         }        
     }
     //Refresh playlist

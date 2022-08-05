@@ -4,11 +4,11 @@ var simpleList = document.getElementById("simpleList")
 var related_videos = document.getElementById("related_videos")
 // console.log(simpleList)
 
-// new Sortable(simpleList, {
-//   handle:'.handle',
-//   animation:200,
+new Sortable(simpleList, {
+  handle:'.handle',
+  animation:200,
 
-// })
+})
 
 new Sortable(related_videos, {
   handle:'.handle',

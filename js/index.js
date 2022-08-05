@@ -834,7 +834,7 @@ function togglePlaylist() {
             }            
 
         } else {
-            af.style.display = "none"; 
+            af.style.display = "block"; 
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
                 if (current_page == "glossary.html") {

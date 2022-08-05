@@ -389,29 +389,29 @@ function addToSidebar (new_topic) {
             //    <div class="btn heart flex-center" onclick="event.stopPropagation()">
             //       <i id="playlist-btn-${new_topic.id}" class="fa fa-heart"></i>
             //   </div>
-                            const new_sidebar_element = `
-                           <div id=${new_topic.id} class="panel panel-default results-panel">
-                           <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
+    const new_sidebar_element = `
+        <div id=${new_topic.id} class="panel panel-default results-panel">
+            <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
-                          <div onclick="event.stopPropagation()">
-                                      <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
-                                      </div>
-                     
-                      <div class="thumbnail flex-center" data-video-id=${video_id}>
-                        <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
-                      </div>
-                      <div class="details">
-                      <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
-                      <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
-                      <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
-                      </div>
+            <div onclick="event.stopPropagation()">
+                <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+            </div>
+                        
+            <div class="thumbnail flex-center" data-video-id=${video_id}>
+            <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+            </div>
+            <div class="details">
+                <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+                <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
+                <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
+            </div>
 
-                      <div class="handle flex-center" onclick="event.stopPropagation()">
-                            <i class="fas fa-grip-horizontal"></i>
-                      </div>
+            <div class="handle flex-center" onclick="event.stopPropagation()">
+                <i class="fas fa-grip-horizontal"></i>
+            </div>
 
-                    </div>
-                           </div>`
+            </div>
+        </div>`
     $("#simpleList").append(new_sidebar_element);
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
@@ -451,7 +451,7 @@ function addToRelatedVideos (new_topic) {
     //                             '</div>';
 
     const new_sidebar_element = `
-    <div id=${new_topic.id}>
+    <div id=${new_topic.id} class="panel panel-default results-panel>
         <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">

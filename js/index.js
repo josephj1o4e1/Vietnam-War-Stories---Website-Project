@@ -962,6 +962,7 @@ function init() {
                                     // if (current.region != '') { regions[current.region].entries.push(new_contribution); }
                                     if (current_page !='glossary.html'){
                                         addToSidebar(new_topic);
+                                        topics_curr_noAF.push(new_topic);
                                         refreshSavePlaylist();
                                     }
                                     topics.push(new_topic);

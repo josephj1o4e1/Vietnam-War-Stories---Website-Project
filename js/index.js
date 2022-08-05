@@ -836,7 +836,7 @@ function togglePlaylist() {
                 glossaryTerms(lastClickedTermList);
                 toggleAlphabeticalList();
             } else {
-            searchByFilters();
+            // searchByFilters();
             refreshSavePlaylist();
             }
         } else {
@@ -849,24 +849,23 @@ function togglePlaylist() {
              toggleAlphabeticalList();
         }        
     }
-
-function checkInPlaylist(id){
-        for (var i = 0; i < youtube_playlist.length; i++){
-            if(id == youtube_playlist[i].id  ){
-                topics[id].inPlaylist = true;
-                $("#playlist-btn-" + topics[id].id).attr("onClick", "removeFromPlaylist(" + topics[id].id + ")");
-                $("#playlist-btn-" + topics[id].id).attr("value", "-");
-                $("#playlist-btn-" + topics[id].id).attr("title", "Remove from Playlist");
-            }
-        }
-}
-
-    
-//Refresh playlist
+    //Refresh playlist
     checkSortToolTip();  
     refreshSavePlaylist();
 
 }
+
+// function checkInPlaylist(id){
+//     for (var i = 0; i < youtube_playlist.length; i++){
+//         if(id == youtube_playlist[i].id  ){
+//             topics[id].inPlaylist = true;
+//             $("#playlist-btn-" + topics[id].id).attr("onClick", "removeFromPlaylist(" + topics[id].id + ")");
+//             $("#playlist-btn-" + topics[id].id).attr("value", "-");
+//             $("#playlist-btn-" + topics[id].id).attr("title", "Remove from Playlist");
+//         }
+//     }
+// }
+
 
 /*  Set Playlist button to back when playlist is empty
 *   Disable Click to Drag message if only one video is in 

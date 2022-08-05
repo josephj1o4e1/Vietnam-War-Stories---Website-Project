@@ -815,7 +815,7 @@ function togglePlaylist() {
         clearSidebar();
         clearGlossary();
         if (is_playlist_active) {
-            af.style.display = "none"; 
+            af.style.display = "block"; 
             is_playlist_active = false;
             $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
             if (current_page == "glossary.html"){
@@ -834,7 +834,7 @@ function togglePlaylist() {
             }            
 
         } else {
-            af.style.display = "block"; 
+            af.style.display = "none"; 
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
                 if (current_page == "glossary.html") {

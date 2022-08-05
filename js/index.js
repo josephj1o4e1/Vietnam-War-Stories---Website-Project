@@ -839,7 +839,12 @@ function togglePlaylist() {
         } else {
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
-                addToSidebar(topics[j]);
+                if (current_page == "glossary.html") {
+                    addToRelatedVideos(topics[j]);
+                }
+                else {
+                    addToSidebar(topics[j]);
+                }
             }
             is_playlist_active = true;
             $("#playlist-button").html('Back');

@@ -381,22 +381,22 @@ function addToSidebar (new_topic) {
         <div id=${new_topic.id} class="panel panel-default results-panel">
             <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
-            <div onclick="event.stopPropagation()">
-                <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
-            </div>
-                        
-            <div class="thumbnail flex-center" data-video-id=${video_id}>
-                <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
-            </div>
-            <div class="details">
-                <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
-                <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
-                <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
-            </div>
+                <div onclick="event.stopPropagation()">
+                    <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+                </div>
+                            
+                <div class="thumbnail flex-center" data-video-id=${video_id}>
+                    <img src="https://img.youtube.com/vi/${video_id}/mqdefault.jpg" alt="">
+                </div>
+                <div class="details">
+                    <h4 class="results-media-heading"><b>${new_topic.topic}</b></h4>
+                    <p class="results-media-contributor"><small>${new_topic.contributor} (${contributors[new_topic.contributor].total_contributions})</small></p>
+                    <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
+                </div>
 
-            <div class="handle flex-center" onclick="event.stopPropagation()">
-                <i class="fas fa-grip-horizontal"></i>
-            </div>
+                <div class="handle flex-center" onclick="event.stopPropagation()">
+                    <i class="fas fa-grip-horizontal"></i>
+                </div>
 
             </div>
         </div>`
@@ -420,6 +420,7 @@ function addToSidebar (new_topic) {
 //Display topic cards related to currently selected glossary keywords
 function addToRelatedVideos (new_topic) {
     var video_id = new_topic.youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
+    console.log(video_id);
     // var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel">' +
     //                                 '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
     //                                     '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +
@@ -806,11 +807,6 @@ function removeFromPlaylist(id){
 var is_playlist_active = false;
 function togglePlaylist() {
     var af = document.getElementById("search-filter-group"); // af as advanced filter
-    if (af.style.display === "none") {
-        af.style.display = "block";
-    } else {
-        af.style.display = "none";
-    }
     if (jQuery.isEmptyObject(youtube_playlist) && !is_playlist_active) {
         console.log()
         $("#playlist-button").popover("toggle");
@@ -819,8 +815,9 @@ function togglePlaylist() {
         clearSidebar();
         clearGlossary();
         if (is_playlist_active) {
-           is_playlist_active = false;
-           $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+            af.style.display = "block"; 
+            is_playlist_active = false;
+            $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
             if (current_page == "glossary.html"){
                 // glossaryTerms();
                 getGlossaryDef(lastClickedDef);
@@ -837,6 +834,7 @@ function togglePlaylist() {
             }            
 
         } else {
+            af.style.display = "none"; 
             for (var i = 0; i < youtube_playlist.length; i++) {
                 var j = youtube_playlist[i].id;
                 if (current_page == "glossary.html") {

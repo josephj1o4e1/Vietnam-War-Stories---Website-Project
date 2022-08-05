@@ -420,6 +420,7 @@ function addToSidebar (new_topic) {
 //Display topic cards related to currently selected glossary keywords
 function addToRelatedVideos (new_topic) {
     var video_id = new_topic.youtube_link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
+    console.log(video_id);
     // var new_sidebar_element =   '<div id="'+ new_topic.id + '" class="panel panel-default results-panel">' +
     //                                 '<div id="topic-sidebar-card-' + new_topic.id + '" class="results-panel-body"  onClick="openTopicModal(' + new_topic.id + ')">' +
     //                                     '<div class="media results-sidebar-media" data-video-id="'+ video_id +'" >' +

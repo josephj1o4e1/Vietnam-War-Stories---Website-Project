@@ -54,6 +54,7 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   if (is_playlist_active == true){
+   
     video_find();
     event.target.setVolume(10);
     event.target.cuePlaylist(videoPlayList);
@@ -89,7 +90,6 @@ function video_find() {
 };
 
 function updateSidebarPlaylist(){
-  console.log("OMMMMMMMGGGGGG")
   if (is_playlist_active){
       var sidebar_playlist = document.getElementById("simpleList").childNodes;
       youtube_playlist = [];

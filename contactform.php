@@ -20,7 +20,7 @@ if (!empty($_POST['name']) ) {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->setFrom('contact@vietwar.sitehost-test.iu.edu', 'Vietnam War Stories - test server');
     //$mail->addAddress('ejblom@iu.edu', 'John Doe');
-    $mail->addAddress('osgoodr@indiana.edu', 'Professor Ron Osgood');
+    $mail->addAddress('vietnamwarstories@gmail.com', 'Vietnam War Gmail Account');
     $mail->Subject = 'A message from Vietnam War Stories - test server';
 
     if (!empty($_FILES['userfile']['name']) ) {

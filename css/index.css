@@ -816,3 +816,11 @@ body {
         margin-left: 6px;
     }
   }
+  @media screen and (max-width: 768px){
+    #region-info-panel {
+        top: 120px;
+    }
+    div#region-detailed-map-container {
+        display: none;
+    }
+  }

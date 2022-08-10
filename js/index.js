@@ -403,6 +403,7 @@ function addToSidebar (new_topic) {
             </div>
         </div>`
     $("#simpleList").append(new_sidebar_element);
+    console.log("newtopic.inPlaylist_sidebar = " + new_topic.inPlaylist)
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
         $("#playlist-btn-" + new_topic.id).attr("value", "-");
@@ -808,7 +809,6 @@ var is_playlist_active = false;
 function togglePlaylist() {
     var af = document.getElementById("search-filter-group"); // af as advanced filter
     if (jQuery.isEmptyObject(youtube_playlist) && !is_playlist_active) {
-        console.log()
         $("#playlist-button").popover("toggle");
         setTimeout(function(){ $("#playlist-button").popover("toggle"); }, 2000);
     } else {

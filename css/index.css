@@ -428,6 +428,7 @@ body {
     position: absolute;
     bottom: 12px; right: 15px;
     text-align: center;
+    font-size: 100px;
 }
 
 #map-container .social-media-corner a {

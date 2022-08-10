@@ -753,10 +753,10 @@ function showRegionInfo(region_id) {
 
 function refreshSavePlaylist(){
     for (var i = 0; i < youtube_playlist.length; i++){
-    var topic_id = youtube_playlist[i].id;
-    $("#playlist-btn-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
-    $("#playlist-btn-" + topic_id).attr("value", "-");
-    $("#playlist-btn-" + topic_id).attr("title", "Remove from Playlist");
+        var topic_id = youtube_playlist[i].id;
+        $("#playlist-btn-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
+        $("#playlist-btn-" + topic_id).attr("value", "-");
+        $("#playlist-btn-" + topic_id).attr("title", "Remove from Playlist");
     }
 }
 
@@ -995,6 +995,7 @@ function init() {
 
     if (current_page == "glossary.html"){
         // glossaryTerms("A");
+        refreshSavePlaylist();
         var html_dropdown_main = "";
         var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         for (var i = 0, l = alphabet.length; l > i; i++) {

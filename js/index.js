@@ -37,6 +37,7 @@ $(document).ready(function () {
     if(!jQuery.isEmptyObject(saved_playlist)){
         youtube_playlist = saved_playlist;
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+        refreshSavePlaylist();
     } 
     
     $('#affiliations-filter').multiselect({

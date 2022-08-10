@@ -37,7 +37,6 @@ $(document).ready(function () {
     if(!jQuery.isEmptyObject(saved_playlist)){
         youtube_playlist = saved_playlist;
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-        refreshSavePlaylist();
     } 
     
     $('#affiliations-filter').multiselect({
@@ -963,13 +962,13 @@ function init() {
                                     if (current_page !='glossary.html'){
                                         addToSidebar(new_topic);
                                         topics_curr_noAF.push(new_topic);
-                                        refreshSavePlaylist();
                                     }
                                     topics.push(new_topic);
                                     topicTotal ++;
                                 }
                             }
                             topics_loaded = true;
+                            refreshSavePlaylist();
                         }    
                     } )
                 }    

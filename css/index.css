@@ -430,10 +430,11 @@ body {
     text-align: center;
 }
 
-#map-container .social-media-corner a {
+#map-container .social-media-corner img {
     color: black;
     opacity: 0.5;
-    /* font-size: 24px; */
+    height: 2em;
+    width: 2em;
     margin: 2px;
     text-decoration: none;
 }
@@ -814,5 +815,13 @@ body {
 
     .details h4{
         margin-left: 6px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    #region-info-panel {
+        top: 120px;
+    }
+    div#region-detailed-map-container {
+        display: none;
     }
   }

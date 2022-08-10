@@ -154,8 +154,7 @@ $(document).ready(function () {
     
     curr_filter = 0;
 
-    console.log("this.inPlaylist!!!!!!!!!")
-    console.log(this.inPlaylist)
+    console.log("this.inPlaylist!!!!!!!!!" + this.inPlaylist)
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
     closeOverlayBtn.addEventListener("click", closeOverlay);

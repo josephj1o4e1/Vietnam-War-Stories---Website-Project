@@ -37,6 +37,7 @@ $(document).ready(function () {
     if(!jQuery.isEmptyObject(saved_playlist)){
         youtube_playlist = saved_playlist;
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+        $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
     } 
     
     $('#affiliations-filter').multiselect({
@@ -470,13 +471,13 @@ function addToRelatedVideos (new_topic) {
     $("#related_videos").append(new_sidebar_element);
     console.log("newtopic.inPlaylist = " + new_topic.inPlaylist)
     if (new_topic.inPlaylist) {
-        $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-" + new_topic.id).attr("value", "-");
-        $("#playlist-btn-" + new_topic.id).attr("title", "Remove from Playlist");
+        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss" + new_topic.id).attr("value", "-");
+        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Remove from Playlist");
     } else {
-        $("#playlist-btn-" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-" + new_topic.id).attr("value", "+");
-        $("#playlist-btn-" + new_topic.id).attr("title", "Add to Playlist");
+        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss" + new_topic.id).attr("value", "+");
+        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Add to Playlist");
     }  
 }   
 
@@ -752,24 +753,42 @@ function showRegionInfo(region_id) {
  */
 
 function refreshSavePlaylist(){
-    for (var i = 0; i < youtube_playlist.length; i++){
-        var topic_id = youtube_playlist[i].id;
-        topics[topic_id].inPlaylist = true;
-        $("#playlist-btn-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
-        $("#playlist-btn-" + topic_id).attr("value", "-");
-        $("#playlist-btn-" + topic_id).attr("title", "Remove from Playlist");
+    if (current_page=="glossary.html"){
+        for (var i = 0; i < youtube_playlist.length; i++){
+            var topic_id = youtube_playlist[i].id;
+            topics[topic_id].inPlaylist = true;
+            $("#playlist-btn-gloss" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
+            $("#playlist-btn-gloss" + topic_id).attr("value", "-");
+            $("#playlist-btn-gloss" + topic_id).attr("title", "Remove from Playlist");
+        }
+    } else {
+        for (var i = 0; i < youtube_playlist.length; i++){
+            var topic_id = youtube_playlist[i].id;
+            topics[topic_id].inPlaylist = true;
+            $("#playlist-btn-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
+            $("#playlist-btn-" + topic_id).attr("value", "-");
+            $("#playlist-btn-" + topic_id).attr("title", "Remove from Playlist");
+        }
     }
 }
 
 function addToPlaylist(id) {
-        //Add object to playlist
-        var j = youtube_playlist.length;
-        youtube_playlist.splice(j, 0, topics[id]);
-        topics[id].inPlaylist = true;
+    //Add object to playlist
+    var j = youtube_playlist.length;
+    youtube_playlist.splice(j, 0, topics[id]);
+    topics[id].inPlaylist = true;
+    if (current_page=="glossary.html"){
+        $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+        $('#playlist-btn-gloss' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
+        $('#playlist-btn-gloss' + id).attr('value', '-');
+        $('#playlist-btn-gloss' + id).attr('title', 'Remove from Playlist');
+    } else {
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
         $('#playlist-btn-' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
         $('#playlist-btn-' + id).attr('value', '-');
         $('#playlist-btn-' + id).attr('title', 'Remove from Playlist');
+    }
+    
     savePlaylist();
 }
 
@@ -781,25 +800,24 @@ function savePlaylist(){
 }
 
 function removeFromPlaylist(id){
-        for (var i = 0; i < youtube_playlist.length; i++){
-        var target_id = id;
-        if (id == youtube_playlist[i].id && is_playlist_active == false){
-        youtube_playlist.splice(i, 1);
-        topics[id].inPlaylist = false;
-        $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-        $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
-        $('#playlist-btn-' + id).attr('value', '+');
-        $('#playlist-btn-' + id).attr('title', 'Add to Playlist');
-       } else {
-            if(id == youtube_playlist[i].id){
+    for (var i = 0; i < youtube_playlist.length; i++){
+        if(id == youtube_playlist[i].id){
             youtube_playlist.splice(i, 1);
             topics[id].inPlaylist = false;
-            document.getElementById(id).remove();
-            $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-            $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
-            $('#playlist-btn-' + id).attr('value', '+');
-            $('#playlist-btn-' + id).attr('title', 'Add to Playlist');
+            if (is_playlist_active == true){
+                document.getElementById(id).remove();
             }
+            if (current_page=="glossary.html"){
+                $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+                $('#playlist-btn-gloss' + id).attr('onclick', 'addToPlaylist(' + id + ')');
+                $('#playlist-btn-gloss' + id).attr('value', '+');
+                $('#playlist-btn-gloss' + id).attr('title', 'Add to Playlist');
+            } else {
+                $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+                $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
+                $('#playlist-btn-' + id).attr('value', '+');
+                $('#playlist-btn-' + id).attr('title', 'Add to Playlist');
+            }            
         }
     }
     checkSortToolTip();
@@ -811,7 +829,9 @@ function togglePlaylist() {
     var af = document.getElementById("search-filter-group"); // af as advanced filter
     if (jQuery.isEmptyObject(youtube_playlist) && !is_playlist_active) {
         $("#playlist-button").popover("toggle");
+        $("#playlist-button-gloss").popover("toggle");
         setTimeout(function(){ $("#playlist-button").popover("toggle"); }, 2000);
+        setTimeout(function(){ $("#playlist-button-gloss").popover("toggle"); }, 2000);
     } else {
         clearSidebar();
         clearGlossary();
@@ -819,6 +839,7 @@ function togglePlaylist() {
             af.style.display = "block"; 
             is_playlist_active = false;
             $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+            $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
                 // glossaryTerms();
             if (curr_filter==1) { // current filter is glossary filter
                 getGlossaryDef(lastClickedDef);
@@ -850,10 +871,11 @@ function togglePlaylist() {
             }
             is_playlist_active = true;
             $("#playlist-button").html('Back');
+            $("#playlist-button-gloss").html('Back');
         }        
     }
     //Refresh playlist
-    checkSortToolTip();  
+    checkSortToolTip();
     refreshSavePlaylist();
 
 }
@@ -880,6 +902,7 @@ function checkSortToolTip(){
     if (jQuery.isEmptyObject(youtube_playlist) && is_playlist_active){
         // is_playlist_active = false;
         $("#playlist-button").html('Back');
+        $("#playlist-button-gloss").html('Back');
     } else {
         if(is_playlist_active){
         var topic_id = document.getElementById("simpleList").firstChild.id;
@@ -996,7 +1019,6 @@ function init() {
 
     if (current_page == "glossary.html"){
         // glossaryTerms("A");
-        refreshSavePlaylist();
         var html_dropdown_main = "";
         var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         for (var i = 0, l = alphabet.length; l > i; i++) {

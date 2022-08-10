@@ -444,7 +444,7 @@ function addToRelatedVideos (new_topic) {
     //                             '</div>';
 
     const new_sidebar_element = `
-    <div id=${new_topic.id} class="panel panel-default results-panel">
+    <div id=${new_topic.id}-gloss class="panel panel-default results-panel">
         <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">
@@ -804,7 +804,9 @@ function removeFromPlaylist(id){
         if(id == youtube_playlist[i].id){
             youtube_playlist.splice(i, 1);
             topics[id].inPlaylist = false;
-            if (is_playlist_active == true){
+            if (is_playlist_active == true && current_page == "glossary.html"){
+                document.getElementById(id+'-gloss').remove();
+            } else if (is_playlist_active == true) {
                 document.getElementById(id).remove();
             }
             if (current_page=="glossary.html"){

@@ -822,18 +822,18 @@ function togglePlaylist() {
             if (curr_filter==1) { // current filter is glossary filter
                 getGlossaryDef(lastClickedDef);
             } else {
-                // topics_curr_noAF.forEach(function (element) {                
-                //     if (current_page == "glossary.html"){
-                //         addToRelatedVideos (element);
-                //     } else {
-                //         addToSidebar (element);
-                //     }
+                topics_curr_noAF.forEach(function (element) {                
+                    if (current_page == "glossary.html"){
+                        addToRelatedVideos (element);
+                    } else {
+                        addToSidebar (element);
+                    }
                     
-                // });
-                // if (advancedFilter_applied==true) {
-                //     applyAdvancedFilter();
-                // }
-                searchByFilters();
+                });
+                if (advancedFilter_applied==true) {
+                    applyAdvancedFilter();
+                }
+                
             }
 
         } else {

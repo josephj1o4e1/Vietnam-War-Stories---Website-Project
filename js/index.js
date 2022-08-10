@@ -444,11 +444,11 @@ function addToRelatedVideos (new_topic) {
     //                             '</div>';
 
     const new_sidebar_element = `
-    <div id=${new_topic.id} class="panel panel-default results-panel">
+    <div id=${new_topic.id}-gloss class="panel panel-default results-panel">
         <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">
-                <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+                <input type="button" id="playlist-btn-gloss-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
             </div>
 
             <div class="thumbnail flex-center" data-video-id=${video_id}>
@@ -471,13 +471,13 @@ function addToRelatedVideos (new_topic) {
     $("#related_videos").append(new_sidebar_element);
     console.log("newtopic.inPlaylist = " + new_topic.inPlaylist)
     if (new_topic.inPlaylist) {
-        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-gloss" + new_topic.id).attr("value", "-");
-        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Remove from Playlist");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("value", "-");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("title", "Remove from Playlist");
     } else {
-        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-gloss" + new_topic.id).attr("value", "+");
-        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Add to Playlist");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("value", "+");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("title", "Add to Playlist");
     }  
 }   
 
@@ -757,9 +757,9 @@ function refreshSavePlaylist(){
         for (var i = 0; i < youtube_playlist.length; i++){
             var topic_id = youtube_playlist[i].id;
             topics[topic_id].inPlaylist = true;
-            $("#playlist-btn-gloss" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
-            $("#playlist-btn-gloss" + topic_id).attr("value", "-");
-            $("#playlist-btn-gloss" + topic_id).attr("title", "Remove from Playlist");
+            $("#playlist-btn-gloss-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
+            $("#playlist-btn-gloss-" + topic_id).attr("value", "-");
+            $("#playlist-btn-gloss-" + topic_id).attr("title", "Remove from Playlist");
         }
     } else {
         for (var i = 0; i < youtube_playlist.length; i++){
@@ -772,6 +772,16 @@ function refreshSavePlaylist(){
     }
 }
 
+
+//Store current playlist in session 
+function savePlaylist(){
+    sessionStorage.removeItem('youtube_playlist');
+    sessionStorage.youtube_playlist = JSON.stringify(youtube_playlist); 
+    console.log('youtube_playlist len = '+ youtube_playlist.length)
+    // var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
+}
+
+
 function addToPlaylist(id) {
     //Add object to playlist
     var j = youtube_playlist.length;
@@ -779,24 +789,17 @@ function addToPlaylist(id) {
     topics[id].inPlaylist = true;
     if (current_page=="glossary.html"){
         $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-        $('#playlist-btn-gloss' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
-        $('#playlist-btn-gloss' + id).attr('value', '-');
-        $('#playlist-btn-gloss' + id).attr('title', 'Remove from Playlist');
+        $('#playlist-btn-gloss-' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
+        $('#playlist-btn-gloss-' + id).attr('value', '-');
+        $('#playlist-btn-gloss-' + id).attr('title', 'Remove from Playlist');
     } else {
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
         $('#playlist-btn-' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
         $('#playlist-btn-' + id).attr('value', '-');
         $('#playlist-btn-' + id).attr('title', 'Remove from Playlist');
     }
-    
+    // checkSortToolTip();
     savePlaylist();
-}
-
-//Store current playlist in session 
-function savePlaylist(){
-    sessionStorage.removeItem('youtube_playlist');
-    sessionStorage.youtube_playlist = JSON.stringify(youtube_playlist); 
-    var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
 }
 
 function removeFromPlaylist(id){
@@ -804,14 +807,16 @@ function removeFromPlaylist(id){
         if(id == youtube_playlist[i].id){
             youtube_playlist.splice(i, 1);
             topics[id].inPlaylist = false;
-            if (is_playlist_active == true){
+            if (is_playlist_active == true && current_page == "glossary.html"){
+                document.getElementById(id+'-gloss').remove();
+            } else if (is_playlist_active == true) {
                 document.getElementById(id).remove();
             }
             if (current_page=="glossary.html"){
                 $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-                $('#playlist-btn-gloss' + id).attr('onclick', 'addToPlaylist(' + id + ')');
-                $('#playlist-btn-gloss' + id).attr('value', '+');
-                $('#playlist-btn-gloss' + id).attr('title', 'Add to Playlist');
+                $('#playlist-btn-gloss-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
+                $('#playlist-btn-gloss-' + id).attr('value', '+');
+                $('#playlist-btn-gloss-' + id).attr('title', 'Add to Playlist');
             } else {
                 $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
                 $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
@@ -820,7 +825,7 @@ function removeFromPlaylist(id){
             }            
         }
     }
-    checkSortToolTip();
+    // checkSortToolTip();
     savePlaylist();
 };
 
@@ -875,7 +880,7 @@ function togglePlaylist() {
         }        
     }
     //Refresh playlist
-    checkSortToolTip();
+    // checkSortToolTip();
     refreshSavePlaylist();
 
 }
@@ -897,24 +902,24 @@ function togglePlaylist() {
 *   Open topic modal to refresh playlist
 */
 
-function checkSortToolTip(){
-    var playlist_length = Object.keys(youtube_playlist).length; 
-    if (jQuery.isEmptyObject(youtube_playlist) && is_playlist_active){
-        // is_playlist_active = false;
-        $("#playlist-button").html('Back');
-        $("#playlist-button-gloss").html('Back');
-    } else {
-        if(is_playlist_active){
-        var topic_id = document.getElementById("simpleList").firstChild.id;
-            // if (playlist_length == 1){
-            // $("#" + topic_id).attr("title", ""); 
-            // openTopicModal(topic_id);
-            // } else {
-            //     openTopicModal(topic_id);
-            // }
-        }    
-    } 
-}
+// function checkSortToolTip(){
+//     var playlist_length = Object.keys(youtube_playlist).length; 
+//     if (jQuery.isEmptyObject(youtube_playlist) && is_playlist_active){
+//         // is_playlist_active = false;
+//         $("#playlist-button").html('Back');
+//         $("#playlist-button-gloss").html('Back');
+//     } else {
+//         if(is_playlist_active){
+//         var topic_id = document.getElementById("simpleList").firstChild.id;
+//             // if (playlist_length == 1){
+//             // $("#" + topic_id).attr("title", ""); 
+//             // openTopicModal(topic_id);
+//             // } else {
+//             //     openTopicModal(topic_id);
+//             // }
+//         }    
+//     } 
+// }
 
 //Find all videos by currently selected contributor and add links to them in topic modal
 function findContributorVideos (new_contributor, current_topic){

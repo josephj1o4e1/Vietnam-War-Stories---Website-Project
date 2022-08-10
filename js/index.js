@@ -902,24 +902,24 @@ function togglePlaylist() {
 *   Open topic modal to refresh playlist
 */
 
-function checkSortToolTip(){
-    var playlist_length = Object.keys(youtube_playlist).length; 
-    if (jQuery.isEmptyObject(youtube_playlist) && is_playlist_active){
-        // is_playlist_active = false;
-        $("#playlist-button").html('Back');
-        $("#playlist-button-gloss").html('Back');
-    } else {
-        if(is_playlist_active){
-        var topic_id = document.getElementById("simpleList").firstChild.id;
-            // if (playlist_length == 1){
-            // $("#" + topic_id).attr("title", ""); 
-            // openTopicModal(topic_id);
-            // } else {
-            //     openTopicModal(topic_id);
-            // }
-        }    
-    } 
-}
+// function checkSortToolTip(){
+//     var playlist_length = Object.keys(youtube_playlist).length; 
+//     if (jQuery.isEmptyObject(youtube_playlist) && is_playlist_active){
+//         // is_playlist_active = false;
+//         $("#playlist-button").html('Back');
+//         $("#playlist-button-gloss").html('Back');
+//     } else {
+//         if(is_playlist_active){
+//         var topic_id = document.getElementById("simpleList").firstChild.id;
+//             // if (playlist_length == 1){
+//             // $("#" + topic_id).attr("title", ""); 
+//             // openTopicModal(topic_id);
+//             // } else {
+//             //     openTopicModal(topic_id);
+//             // }
+//         }    
+//     } 
+// }
 
 //Find all videos by currently selected contributor and add links to them in topic modal
 function findContributorVideos (new_contributor, current_topic){

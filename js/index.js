@@ -154,8 +154,6 @@ $(document).ready(function () {
     
     curr_filter = 0;
 
-    console.log("this.inPlaylist!!!!!!!!!" + this.inPlaylist)
-
     const closeOverlayBtn= document.getElementById('close-overlay-button')
     closeOverlayBtn.addEventListener("click", closeOverlay);
 
@@ -469,6 +467,7 @@ function addToRelatedVideos (new_topic) {
     </div>`
 
     $("#related_videos").append(new_sidebar_element);
+    console.log("newtopic.inPlaylist = " + new_topic.inPlaylist)
     if (new_topic.inPlaylist) {
         $("#playlist-btn-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
         $("#playlist-btn-" + new_topic.id).attr("value", "-");

@@ -432,9 +432,9 @@ body {
 
 #map-container .social-media-corner a {
     color: black;
-    height: 10%;
+    height: 60%;
     opacity: 0.5;
-    font-size: 1em;
+    font-size: 0.5em;
     margin: 2px;
     text-decoration: none;
 }

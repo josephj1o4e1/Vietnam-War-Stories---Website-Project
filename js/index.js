@@ -755,6 +755,7 @@ function showRegionInfo(region_id) {
 function refreshSavePlaylist(){
     for (var i = 0; i < youtube_playlist.length; i++){
         var topic_id = youtube_playlist[i].id;
+        topics[topic_id].inPlaylist = true;
         $("#playlist-btn-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
         $("#playlist-btn-" + topic_id).attr("value", "-");
         $("#playlist-btn-" + topic_id).attr("title", "Remove from Playlist");

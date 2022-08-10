@@ -19,6 +19,7 @@ var affiliations_filters = [],
 var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
 var youtube_playlist = [] ;
 var video_url = "";
+var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 
 var overlay_flag = sessionStorage.getItem('overlay_flag');
 console.log("Overlay Flag: " + overlay_flag)
@@ -36,7 +37,7 @@ $(document).ready(function () {
     if(!jQuery.isEmptyObject(saved_playlist)){
         youtube_playlist = saved_playlist;
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-   } 
+    } 
     
     $('#affiliations-filter').multiselect({
         // includeSelectAllOption: true,
@@ -150,6 +151,8 @@ $(document).ready(function () {
     if(!overlay_flag) {
         $('#results-container').removeClass('no-overlay');
     }
+    
+    curr_filter = 0;
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
     closeOverlayBtn.addEventListener("click", closeOverlay);
@@ -208,7 +211,6 @@ class Keyword {
 var topics = [];
 var topics_curr_noAF = []; // current topic list with no Advanced Filter
 var advancedFilter_applied = false; //flag for advancedFilter
-var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 var topicTotal = 0;
 var topics_loaded = false;
 var contributors = {};
@@ -618,9 +620,6 @@ function applyAdvancedFilter () {
         else {
             advancedFilter_applied = false;
             topics_curr_noAF.forEach(function (element) {                
-                found_topics.push (element);
-            });
-            found_topics.forEach (function (element) { 
                 addToRelatedVideos (element);
             });
         }
@@ -818,20 +817,23 @@ function togglePlaylist() {
             af.style.display = "block"; 
             is_playlist_active = false;
             $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-            if (current_page == "glossary.html"){
                 // glossaryTerms();
+            if (curr_filter==1) { // current filter is glossary filter
                 getGlossaryDef(lastClickedDef);
-                glossaryTerms(lastClickedTermList);                
             } else {
-            // searchByFilters();
                 topics_curr_noAF.forEach(function (element) {                
-                    addToSidebar (element);
+                    if (current_page == "glossary.html"){
+                        addToRelatedVideos (element);
+                    } else {
+                        addToSidebar (element);
+                    }
+                    
                 });
                 if (advancedFilter_applied==true) {
                     applyAdvancedFilter();
                 }
                 refreshSavePlaylist();
-            }            
+            }
 
         } else {
             af.style.display = "none"; 

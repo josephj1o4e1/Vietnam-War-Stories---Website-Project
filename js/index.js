@@ -223,6 +223,7 @@ var keywordsTotal = 0;
 //Check to see if current page is glossary.hml
 var current_path = window.location.pathname;
 var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
+var is_playlist_active = false;
 
 /*
  * Sidebar
@@ -813,12 +814,10 @@ function removeFromPlaylist(id){
                 document.getElementById(id).remove();
             }
             if (current_page=="glossary.html"){
-                $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
                 $('#playlist-btn-gloss-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
                 $('#playlist-btn-gloss-' + id).attr('value', '+');
                 $('#playlist-btn-gloss-' + id).attr('title', 'Add to Playlist');
             } else {
-                $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
                 $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
                 $('#playlist-btn-' + id).attr('value', '+');
                 $('#playlist-btn-' + id).attr('title', 'Add to Playlist');
@@ -829,7 +828,7 @@ function removeFromPlaylist(id){
     savePlaylist();
 };
 
-var is_playlist_active = false;
+
 function togglePlaylist() {
     var af = document.getElementById("search-filter-group"); // af as advanced filter
     if (jQuery.isEmptyObject(youtube_playlist) && !is_playlist_active) {

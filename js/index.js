@@ -448,7 +448,7 @@ function addToRelatedVideos (new_topic) {
         <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">
-                <input type="button" id="playlist-btn-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
+                <input type="button" id="playlist-btn-gloss-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
             </div>
 
             <div class="thumbnail flex-center" data-video-id=${video_id}>
@@ -471,13 +471,13 @@ function addToRelatedVideos (new_topic) {
     $("#related_videos").append(new_sidebar_element);
     console.log("newtopic.inPlaylist = " + new_topic.inPlaylist)
     if (new_topic.inPlaylist) {
-        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-gloss" + new_topic.id).attr("value", "-");
-        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Remove from Playlist");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("onClick", "removeFromPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("value", "-");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("title", "Remove from Playlist");
     } else {
-        $("#playlist-btn-gloss" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
-        $("#playlist-btn-gloss" + new_topic.id).attr("value", "+");
-        $("#playlist-btn-gloss" + new_topic.id).attr("title", "Add to Playlist");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("onClick", "addToPlaylist(" + new_topic.id + ")");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("value", "+");
+        $("#playlist-btn-gloss-" + new_topic.id).attr("title", "Add to Playlist");
     }  
 }   
 
@@ -757,9 +757,9 @@ function refreshSavePlaylist(){
         for (var i = 0; i < youtube_playlist.length; i++){
             var topic_id = youtube_playlist[i].id;
             topics[topic_id].inPlaylist = true;
-            $("#playlist-btn-gloss" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
-            $("#playlist-btn-gloss" + topic_id).attr("value", "-");
-            $("#playlist-btn-gloss" + topic_id).attr("title", "Remove from Playlist");
+            $("#playlist-btn-gloss-" + topic_id).attr("onClick", "removeFromPlaylist(" + topic_id + ")");
+            $("#playlist-btn-gloss-" + topic_id).attr("value", "-");
+            $("#playlist-btn-gloss-" + topic_id).attr("title", "Remove from Playlist");
         }
     } else {
         for (var i = 0; i < youtube_playlist.length; i++){
@@ -779,9 +779,9 @@ function addToPlaylist(id) {
     topics[id].inPlaylist = true;
     if (current_page=="glossary.html"){
         $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-        $('#playlist-btn-gloss' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
-        $('#playlist-btn-gloss' + id).attr('value', '-');
-        $('#playlist-btn-gloss' + id).attr('title', 'Remove from Playlist');
+        $('#playlist-btn-gloss-' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
+        $('#playlist-btn-gloss-' + id).attr('value', '-');
+        $('#playlist-btn-gloss-' + id).attr('title', 'Remove from Playlist');
     } else {
         $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
         $('#playlist-btn-' + id).attr('onclick', 'removeFromPlaylist(' + id + ')');
@@ -811,9 +811,9 @@ function removeFromPlaylist(id){
             }
             if (current_page=="glossary.html"){
                 $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
-                $('#playlist-btn-gloss' + id).attr('onclick', 'addToPlaylist(' + id + ')');
-                $('#playlist-btn-gloss' + id).attr('value', '+');
-                $('#playlist-btn-gloss' + id).attr('title', 'Add to Playlist');
+                $('#playlist-btn-gloss-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
+                $('#playlist-btn-gloss-' + id).attr('value', '+');
+                $('#playlist-btn-gloss-' + id).attr('title', 'Add to Playlist');
             } else {
                 $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
                 $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');

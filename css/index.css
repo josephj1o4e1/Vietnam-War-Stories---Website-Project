@@ -174,7 +174,7 @@ body {
 
 }
 
-#search-bar, #search-filter-group .btn, #playlist-button, .sidebar-panel {
+#search-bar, #search-filter-group .btn, #playlist-button, #playlist-button-gloss, .sidebar-panel {
     border-radius: 0;
 }
 

@@ -749,7 +749,6 @@ function showRegionInfo(region_id) {
  * 
  * addToPlaylist(id) - adds the respective Contribution to the playlist array, changes onClick() function to remove
  * removeFromPlaylist(id) - removes the respective Contribution from the playlist array, changes onClick() function to add
- * showPlaylist() - displays the modal containing information about item(s) in the playlist array
  * 
  */
 

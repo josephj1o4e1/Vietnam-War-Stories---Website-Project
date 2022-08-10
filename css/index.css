@@ -423,14 +423,14 @@ body {
     opacity: 1;
 }
 
-#social-media-corner {
+#map-container .social-media-corner {
     z-index: 999;
     position: absolute;
     bottom: 12px; right: 15px;
     text-align: center;
 }
 
-#social-media-corner a {
+#map-container .social-media-corner a {
     color: black;
     height: 100%;
     font-size: 24px;

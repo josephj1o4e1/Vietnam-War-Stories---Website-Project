@@ -772,6 +772,16 @@ function refreshSavePlaylist(){
     }
 }
 
+
+//Store current playlist in session 
+function savePlaylist(){
+    sessionStorage.removeItem('youtube_playlist');
+    sessionStorage.youtube_playlist = JSON.stringify(youtube_playlist); 
+    console.log('youtube_playlist len = '+ youtube_playlist.length)
+    // var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
+}
+
+
 function addToPlaylist(id) {
     //Add object to playlist
     var j = youtube_playlist.length;
@@ -788,15 +798,8 @@ function addToPlaylist(id) {
         $('#playlist-btn-' + id).attr('value', '-');
         $('#playlist-btn-' + id).attr('title', 'Remove from Playlist');
     }
-    
+    // checkSortToolTip();
     savePlaylist();
-}
-
-//Store current playlist in session 
-function savePlaylist(){
-    sessionStorage.removeItem('youtube_playlist');
-    sessionStorage.youtube_playlist = JSON.stringify(youtube_playlist); 
-    var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
 }
 
 function removeFromPlaylist(id){
@@ -822,7 +825,7 @@ function removeFromPlaylist(id){
             }            
         }
     }
-    checkSortToolTip();
+    // checkSortToolTip();
     savePlaylist();
 };
 
@@ -877,7 +880,7 @@ function togglePlaylist() {
         }        
     }
     //Refresh playlist
-    checkSortToolTip();
+    // checkSortToolTip();
     refreshSavePlaylist();
 
 }

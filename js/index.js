@@ -824,7 +824,11 @@ function removeFromPlaylist(id){
                 $('#playlist-btn-' + id).attr('onclick', 'addToPlaylist(' + id + ')');
                 $('#playlist-btn-' + id).attr('value', '+');
                 $('#playlist-btn-' + id).attr('title', 'Add to Playlist');
-            }            
+            }
+            if (! is_playlist_active) {
+                $('#playlist-button').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+                $('#playlist-button-gloss').text('Playlist (' + Object.keys(youtube_playlist).length + ')');
+            }
         }
     }
     // checkSortToolTip();

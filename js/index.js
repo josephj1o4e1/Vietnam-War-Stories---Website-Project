@@ -398,9 +398,7 @@ function addToSidebar (new_topic) {
                     <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
                 </div>
 
-                <div class="handle flex-center" onclick="event.stopPropagation()">
-                    <i class="fas fa-grip-horizontal"></i>
-                </div>
+                
 
             </div>
         </div>`
@@ -416,6 +414,10 @@ function addToSidebar (new_topic) {
         $("#playlist-btn-" + new_topic.id).attr("title", "Add to Playlist");
     }  
 }
+
+/* <div class="handle flex-center" onclick="event.stopPropagation()">
+                    <i class="fas fa-grip-horizontal"></i>
+                </div> */
 
 
 
@@ -462,9 +464,7 @@ function addToRelatedVideos (new_topic) {
                 <p class="results-media-abstract-excerpt"><small>${new_topic.topic_abstract}</small></p> 
             </div>
 
-            <div class="handle flex-center" onclick="event.stopPropagation()">
-                <i class="fas fa-grip-horizontal"></i>
-            </div>
+            
 
         </div>
     </div>`
@@ -481,6 +481,10 @@ function addToRelatedVideos (new_topic) {
         $("#playlist-btn-gloss-" + new_topic.id).attr("title", "Add to Playlist");
     }  
 }   
+
+/* <div class="handle flex-center" onclick="event.stopPropagation()">
+                <i class="fas fa-grip-horizontal"></i>
+            </div> */
 
 function openTopicModal (topic_id) {
     if (current_page=="index.html") {
@@ -749,7 +753,6 @@ function showRegionInfo(region_id) {
  * 
  * addToPlaylist(id) - adds the respective Contribution to the playlist array, changes onClick() function to remove
  * removeFromPlaylist(id) - removes the respective Contribution from the playlist array, changes onClick() function to add
- * showPlaylist() - displays the modal containing information about item(s) in the playlist array
  * 
  */
 

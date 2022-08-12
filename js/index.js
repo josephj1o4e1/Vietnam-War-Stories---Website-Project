@@ -448,7 +448,7 @@ function addToRelatedVideos (new_topic) {
 
     const new_sidebar_element = `
     <div id=${new_topic.id}-gloss class="panel panel-default results-panel">
-        <div id="topic-sidebar-card-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
+        <div id="topic-sidebar-card-gloss-${new_topic.id}" class="results-panel-body list-group-item"  onClick="openTopicModal(${new_topic.id})">
 
             <div onclick="event.stopPropagation()">
                 <input type="button" id="playlist-btn-gloss-${new_topic.id}" class="btn btn-secondary results-add-playlist-button" value="+" />
@@ -487,10 +487,8 @@ function addToRelatedVideos (new_topic) {
             </div> */
 
 function openTopicModal (topic_id) {
-    if (current_page=="index.html") {
-        $("#topic-modal").modal("show");
-    }
-    else if (current_page=="glossary.html") {
+    $("#topic-modal").modal("show");
+    if (current_page=="glossary.html") {
         $("#topic-modal-glossary").modal("show");
     }
 

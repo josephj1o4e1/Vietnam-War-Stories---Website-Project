@@ -21,8 +21,8 @@ var youtube_playlist = [] ;
 var video_url = "";
 var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 
-var overlay_flag = sessionStorage.getItem('overlay_flag');
-console.log("Overlay Flag: " + overlay_flag)
+var overlay_flag_prev = sessionStorage.getItem('overlay_flag');
+overlay_flag = true;
 
 
 function closeOverlay() {
@@ -151,10 +151,13 @@ $(document).ready(function () {
     });
 
 
-    if(!overlay_flag) {
+    if(!overlay_flag_prev) {
         // $('#results-container').removeClass('no-overlay');
         $('#results-container').addClass('no-overlay');
+        sessionStorage.overlay_flag = overlay_flag_prev;
     }
+    
+    console.log("Overlay Flag: " + overlay_flag);
     
     curr_filter = 0;
 

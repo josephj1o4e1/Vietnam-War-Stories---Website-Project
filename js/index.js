@@ -152,7 +152,7 @@ $(document).ready(function () {
 
     if(!jQuery.isEmptyObject(overlay_flag)) {
         // $('#results-container').removeClass('no-overlay');
-        $('#results-container').addClass('no-overlay');
+        $('#about-overlay').remove();
         sessionStorage.overlay_flag = overlay_flag;
     }
     

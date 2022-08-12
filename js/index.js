@@ -487,10 +487,8 @@ function addToRelatedVideos (new_topic) {
             </div> */
 
 function openTopicModal (topic_id) {
-    if (current_page=="index.html") {
-        $("#topic-modal").modal("show");
-    }
-    else if (current_page=="glossary.html") {
+    $("#topic-modal").modal("show");
+    if (current_page=="glossary.html") {
         $("#topic-modal-glossary").modal("show");
     }
 

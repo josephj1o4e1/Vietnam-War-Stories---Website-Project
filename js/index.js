@@ -153,7 +153,7 @@ $(document).ready(function () {
     if(!overlay_flag) {
         // $('#results-container').removeClass('no-overlay');
         $('#results-container').addClass('no-overlay');
-        sessionStorage.setItem('overlay_flag', false);
+        overlay_flag = prev_overlay_flag; // prev_overlay_flag is false after triggering closeOverlay()
     }
     
     curr_filter = 0;

@@ -26,7 +26,7 @@ console.log("Overlay Flag: " + overlay_flag)
 
 
 function closeOverlay() {
-    sessionStorage.setItem('overlay_flag', true);
+    sessionStorage.setItem('overlay_flag', false);
     if(!$('#results-container').hasClass('no-overlay')) {
         $('#results-container').toggleClass('no-overlay');
     }

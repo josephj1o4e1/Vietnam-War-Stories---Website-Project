@@ -21,7 +21,8 @@ var youtube_playlist = [] ;
 var video_url = "";
 var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 
-var overlay_flag = sessionStorage.getItem('overlay_flag');
+var prev_overlay_flag = sessionStorage.getItem('overlay_flag');
+var overlay_flag = true;
 console.log("Overlay Flag: " + overlay_flag)
 
 
@@ -150,7 +151,9 @@ $(document).ready(function () {
 
 
     if(!overlay_flag) {
-        $('#results-container').removeClass('no-overlay');
+        // $('#results-container').removeClass('no-overlay');
+        $('#results-container').addClass('no-overlay');
+        sessionStorage.setItem('overlay_flag', false);
     }
     
     curr_filter = 0;

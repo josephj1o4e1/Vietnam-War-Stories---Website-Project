@@ -21,14 +21,13 @@ var youtube_playlist = [] ;
 var video_url = "";
 var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 
-var overlay_flag_prev = sessionStorage.getItem('overlay_flag');
-overlay_flag = true;
+var overlay_flag = sessionStorage.getItem('overlay_flag');
 
 
 function closeOverlay() {
     // sessionStorage.setItem('overlay_flag', false);
-    sessionStorage.removeItem('overlay_flag');
-    sessionStorage.overlay_flag = false; 
+    // sessionStorage.removeItem('overlay_flag');
+    sessionStorage.overlay_flag = 1; 
     if(!$('#results-container').hasClass('no-overlay')) {
         $('#results-container').toggleClass('no-overlay');
     }
@@ -151,10 +150,10 @@ $(document).ready(function () {
     });
 
 
-    if(!overlay_flag_prev) {
+    if(!jQuery.isEmptyObject(overlay_flag)) {
         // $('#results-container').removeClass('no-overlay');
         $('#results-container').addClass('no-overlay');
-        sessionStorage.overlay_flag = overlay_flag_prev;
+        sessionStorage.overlay_flag = overlay_flag;
     }
     
     console.log("Overlay Flag: " + overlay_flag);

@@ -22,11 +22,12 @@ var video_url = "";
 var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
 
 var overlay_flag = sessionStorage.getItem('overlay_flag');
-console.log("Overlay Flag: " + overlay_flag)
 
 
 function closeOverlay() {
-    sessionStorage.setItem('overlay_flag', true);
+    // sessionStorage.setItem('overlay_flag', false);
+    // sessionStorage.removeItem('overlay_flag');
+    sessionStorage.overlay_flag = 1; 
     if(!$('#results-container').hasClass('no-overlay')) {
         $('#results-container').toggleClass('no-overlay');
     }
@@ -149,9 +150,13 @@ $(document).ready(function () {
     });
 
 
-    if(!overlay_flag) {
-        $('#results-container').removeClass('no-overlay');
+    if(!jQuery.isEmptyObject(overlay_flag)) {
+        // $('#results-container').removeClass('no-overlay');
+        $('#about-overlay').remove();
+        sessionStorage.overlay_flag = overlay_flag;
     }
+    
+    console.log("Overlay Flag: " + overlay_flag);
     
     curr_filter = 0;
 

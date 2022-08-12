@@ -13,6 +13,17 @@ function onYouTubeIframeAPIReady() {
           'onPlayerError': onPlayerError
         }
     });
+
+    player_auto = new YT.Player('yt-player-auto', {
+      playerVars: { 'autoplay': 1, 'controls': 1},
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange,
+        'onPlayerError': onPlayerError
+      }
+    });
+
+
   }
   
 function onPlayerReady(event) {
@@ -37,6 +48,7 @@ var done = false;
 
   function stopVideo() {
     player.stopVideo();
+    player_auto.stopVideo();
   }
 
 function onPlayerError(event) {

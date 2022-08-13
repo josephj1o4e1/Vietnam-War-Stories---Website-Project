@@ -162,7 +162,7 @@ function test_input($data) {
             <?php
                 echo $msg;
             ?>
-            <p>Back to <a href="https://vietwar.sitehost-test.iu.edu\">Vietnam War Stories</a></p>
+            <p>Back to <a href="https://vietwar.sitehost.iu.edu\">Vietnam War Stories</a></p>
         </div>
     </body>
 </html>

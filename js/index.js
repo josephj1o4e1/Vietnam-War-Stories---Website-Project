@@ -20,6 +20,8 @@ var saved_playlist = JSON.parse(sessionStorage.getItem('youtube_playlist'));
 var youtube_playlist = [] ;
 var video_url = "";
 var curr_filter = 0; // if nofilter -> 0, glossary -> 1, searchfilter -> 2
+var current_path = window.location.pathname;
+var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
 
 var overlay_flag = sessionStorage.getItem('overlay_flag');
 
@@ -111,8 +113,9 @@ $(document).ready(function () {
     curr_filter = 0;
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
-    closeOverlayBtn.addEventListener("click", closeOverlay);
-
+    if (current_page=="index.html" || ""){
+        closeOverlayBtn.addEventListener("click", closeOverlay);
+    }
 })
 
 class Topic {
@@ -175,8 +178,6 @@ var regions = {};
 var regionTotal = 0;
 var keywords = {};
 var keywordsTotal = 0;
-var current_path = window.location.pathname;
-var current_page = current_path.substring(current_path.lastIndexOf('/') + 1);
 var is_playlist_active = false;
 
 

@@ -242,21 +242,6 @@ var is_playlist_active = false;
 
 //Get glossary terms array, create terms list
 
-// function glossaryTerms(firstChar){
-//     lastClickedTermList = firstChar;
-//     $("#glossary-entries").empty();
-//   var find_glossary_terms = Object.values(keywords);
-//   for (var i = 0; i < find_glossary_terms.length; i++){
-//     var new_glossary_entry = find_glossary_terms[i];
-//     var glossary_list =  '<a href="#"><li onClick="getGlossaryDef('+  new_glossary_entry.id +')">' + new_glossary_entry.name + '</li></a>';
-//     var target_terms = new_glossary_entry.name;
-//     if(target_terms.charAt(0).toUpperCase() == lastClickedTermList){
-//     $("#glossary-entries").append(glossary_list);
-//     } 
-//   }
-//   getFirstDef();
-//  }
-
 function glossaryTerms(firstChar){
     lastClickedTermList = firstChar;
     $("#glossary-entries"+firstChar).empty();
@@ -272,11 +257,7 @@ function glossaryTerms(firstChar){
 }
 
 
-
-
 //Get the most recently clicked glossary term
-// var lastClickedDef = 0; 
-// var lastClickedTermList = "A";
 function getFirstDef(){
     if ($('#glossary-defs-list').is(':empty') && current_page =="glossary.html"){
         if(topics_loaded == true){

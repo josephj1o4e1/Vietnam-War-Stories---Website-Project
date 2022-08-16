@@ -113,9 +113,10 @@ $(document).ready(function () {
     curr_filter = 0;
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
-    if ((current_page=="index.html" || jQuery.isEmptyObject(current_page)) && jQuery.isEmptyObject(overlay_flag)){ //jQuery.isEmptyObject(current_page) is https://vietnamwarstories.indiana.edu
-        closeOverlayBtn.addEventListener("click", closeOverlay);
-    }
+    closeOverlayBtn.addEventListener("click", closeOverlay);
+    // if ((current_page=="index.html" || jQuery.isEmptyObject(current_page)) && jQuery.isEmptyObject(overlay_flag)){
+    //     closeOverlayBtn.addEventListener("click", closeOverlay);
+    // }
 })
 
 class Topic {

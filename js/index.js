@@ -113,7 +113,7 @@ $(document).ready(function () {
     curr_filter = 0;
 
     const closeOverlayBtn= document.getElementById('close-overlay-button')
-    if (current_page=="index.html" || ""){
+    if (current_page=="index.html" || current_path.lastIndexOf('/')==-1){ //current_path.lastIndexOf('/')==-1 is https://vietnamwarstories.indiana.edu
         closeOverlayBtn.addEventListener("click", closeOverlay);
     }
 })

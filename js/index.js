@@ -116,7 +116,7 @@ $(document).ready(function () {
     console.log(window.location.pathname)
     console.log(jQuery.isEmptyObject(current_page))
     console.log(window.location.href)
-    if ((current_page=="index.html" || jQuery.isEmptyObject(current_page)) && !jQuery.isEmptyObject(overlay_flag)){ //jQuery.isEmptyObject(current_page) is https://vietnamwarstories.indiana.edu
+    if ((current_page=="index.html" || jQuery.isEmptyObject(current_page)) && jQuery.isEmptyObject(overlay_flag)){ //jQuery.isEmptyObject(current_page) is https://vietnamwarstories.indiana.edu
         closeOverlayBtn.addEventListener("click", closeOverlay);
     }
 })

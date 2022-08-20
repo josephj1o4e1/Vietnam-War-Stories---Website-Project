@@ -398,9 +398,13 @@
                   stroke-width: 1.1px;
                   opacity: 0.6;
                 }
-                #china-sea:hover{
+                #china-sea g {
+                  fill: transparent;
+                }               
+                #china-sea g:hover {
                   opacity: 1;
-                  cursor: pointer;
+                  cursor: cursor;
+                  fill: #43a7a285;
                 }                
                 .cls-11,
                 .cls-13,
@@ -1467,7 +1471,7 @@
             <svg onmouseover="showRegionInfo('South China Sea')"
             onClick="filterByRegion('South China Sea')" id="china-sea" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <!-- Using g to inherit presentation attributes -->
-              <g fill="transparent">
+              <g>
                 <circle cx="95" cy="90" r="9" />
               </g>
             </svg>

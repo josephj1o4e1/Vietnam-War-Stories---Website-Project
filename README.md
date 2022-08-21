@@ -3,7 +3,7 @@ This website is a collaboration with Professor Ron Osgood at Indiana University.
 It is for education purpose for students to learn more about the Vietnam War. <br />
 Here is the current website: https://vietnamwarstories.indiana.edu/ <br />
 
-![alt text]()
+![alt text](https://github.com/josephj1o4e1/Vietnam-War-Stories---Website-Project/blob/main/images/website_thumbnail.png)
 
 ## Quick Guide of Code
 The website uses basic HTML, CSS, JavaScript and some PHP (mostly only for email sending). <br /><br />
